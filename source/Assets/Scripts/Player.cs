@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     public Boundary boundary;
-    public float speed = 1;
+    public float speed = .5f;
 
     void Update()
     {
