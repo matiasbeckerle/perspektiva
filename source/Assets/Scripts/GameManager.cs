@@ -38,4 +38,12 @@ public class GameManager : MonoBehaviour
     {
         UIManager.Instance.ShowLevel(level);
     }
+
+    public void GameOver()
+    {
+        UIManager.Instance.ShowGameOver();
+
+        // Disable this GameManager.
+        enabled = false;
+    }
 }

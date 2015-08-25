@@ -11,7 +11,7 @@ GameObject:
   - 222: {fileID: 22275420}
   - 114: {fileID: 11418400}
   m_Layer: 5
-  m_Name: LevelText
+  m_Name: MessageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ GameObject:
   - 222: {fileID: 22277022}
   - 114: {fileID: 11485832}
   m_Layer: 5
-  m_Name: LevelBackground
+  m_Name: MessageBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,8 +92,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d860f73c84aae8e48b8ee093af569251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelText: {fileID: 11418400}
-  levelImage: {fileID: 174146}
+  messageText: {fileID: 11418400}
+  messageImage: {fileID: 174146}
+  levelStartDelay: 2
 --- !u!114 &11414322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,7 +136,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Level 1
+  m_Text: Level
 --- !u!114 &11485832
 MonoBehaviour:
   m_ObjectHideFlags: 1

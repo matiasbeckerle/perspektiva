@@ -7,8 +7,8 @@ public class UIManager : MonoBehaviour
     // Static instance of UIManager which allows it to be accessed by any other script.
     public static UIManager Instance = null;
 
-    public Text levelText;
-    public GameObject levelImage;
+    public Text messageText;
+    public GameObject messageImage;
     public float levelStartDelay = 2f;
 
     void Awake()
@@ -25,16 +25,22 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void ShowLevel(int level)
+    public void ShowGameOver()
     {
-        levelText.text = "Level " + level;
-        levelImage.SetActive(true);
-
-        Invoke("HideLevel", levelStartDelay);
+        messageText.text = "Game Over";
+        messageImage.SetActive(true);
     }
 
-    public void HideLevel()
+    public void ShowLevel(int level)
     {
-        levelImage.SetActive(false);
+        messageText.text = "Level " + level;
+        messageImage.SetActive(true);
+
+        Invoke("HideMessage", levelStartDelay); // TODO: research for another better way.
+    }
+
+    private void HideMessage()
+    {
+        messageImage.SetActive(false);
     }
 }
