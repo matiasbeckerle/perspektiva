@@ -7,8 +7,12 @@ public class UIManager : MonoBehaviour
     // Static instance of UIManager which allows it to be accessed by any other script.
     public static UIManager Instance = null;
 
+    public GameObject messageCanvas;
     public Text messageText;
-    public GameObject messageImage;
+
+    public GameObject statsCanvas;
+    public Text currentLevelText;
+    public Text lifesQuantityText;
 
     void Awake()
     {
@@ -24,6 +28,12 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void HideAll()
+    {
+        HideStats();
+        HideMessage();
+    }
+
     /// <summary>
     /// Shows a message at full size screen.
     /// </summary>
@@ -31,7 +41,8 @@ public class UIManager : MonoBehaviour
     public void ShowMessage(string message)
     {
         messageText.text = message;
-        messageImage.SetActive(true);
+        HideAll();
+        messageCanvas.SetActive(true);
     }
 
     /// <summary>
@@ -47,6 +58,26 @@ public class UIManager : MonoBehaviour
 
     private void HideMessage()
     {
-        messageImage.SetActive(false);
+        messageCanvas.SetActive(false);
+    }
+
+    public void ShowStats()
+    {
+        statsCanvas.SetActive(true);
+    }
+
+    private void HideStats()
+    {
+        statsCanvas.SetActive(false);
+    }
+
+    public void UpdateLifesQuantity(int lifesQuantity)
+    {
+        lifesQuantityText.text = lifesQuantity.ToString();
+    }
+
+    public void UpdateCurrentLevel(int level)
+    {
+        currentLevelText.text = level.ToString();
     }
 }
