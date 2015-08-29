@@ -39,13 +39,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598c1632d2aba6840841790f8a1628bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 163650, guid: 8ff25fce80d7ee9488d58b8375834879, type: 2}
+  levelStartDelay: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 163650, guid: 8ff25fce80d7ee9488d58b8375834879, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 146874}
