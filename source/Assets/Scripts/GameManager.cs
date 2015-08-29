@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     // Static instance of GameManager which allows it to be accessed by any other script.
     public static GameManager Instance = null;
 
+    public float levelStartDelay = 2f;
+
     private int level = 1;
     private int bricks = 0;
 
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void InitGame()
     {
-        UIManager.Instance.ShowLevel(level);
+        UIManager.Instance.ShowMessage("Level " + level, levelStartDelay);
 
         // Keep quantity of bricks in the current level.
         bricks = GameObject.FindGameObjectsWithTag("Brick").Length;
@@ -66,7 +68,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        UIManager.Instance.ShowGameOver();
+        UIManager.Instance.ShowMessage("Game Over");
 
         // Disable this GameManager.
         enabled = false;
