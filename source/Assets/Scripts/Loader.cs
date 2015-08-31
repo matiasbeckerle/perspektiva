@@ -7,6 +7,10 @@ public class Loader : MonoBehaviour
     [SerializeField]
     GameObject uiManager;
 
+    // SoundManager prefab to instantiate.
+    [SerializeField]
+    GameObject soundManager;
+
     // GameManager prefab to instantiate.
     [SerializeField]
     GameObject gameManager;
@@ -17,6 +21,12 @@ public class Loader : MonoBehaviour
         if (UIManager.Instance == null)
         {
             Instantiate(uiManager);
+        }
+
+        // Check if a SoundManager has already been assigned to static variable SoundManager.instance or if it's still null.
+        if (SoundManager.Instance == null)
+        {
+            Instantiate(soundManager);
         }
 
         // GameManager should be the last one to load.

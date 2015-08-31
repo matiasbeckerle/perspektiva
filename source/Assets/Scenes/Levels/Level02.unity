@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 173396, guid: fde054d2e91aacb48b6be183149528f1, type: 2}
+  soundManager: {fileID: 178954, guid: 6663748af11fb344bbaab74e21e2cb2f, type: 2}
   gameManager: {fileID: 146874, guid: cdc624603eae78e4990c2c9ebddcaa83, type: 2}
 --- !u!81 &628686185
 AudioListener:
