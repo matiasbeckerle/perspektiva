@@ -165,6 +165,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialVelocity: 500
+  brickExplosionSound1: {fileID: 8300000, guid: 798b1f2724b918441a5dacae15898303,
+    type: 3}
+  brickExplosionSound2: {fileID: 8300000, guid: ef4ad7bb1094a404da0829ba0eadd3bb,
+    type: 3}
+  brickExplosionSound3: {fileID: 8300000, guid: 4b3932c5162d06947819aacdcb5d6bed,
+    type: 3}
+  wallHitSound1: {fileID: 8300000, guid: 69970ff006c9f254d8a16863e7d863c5, type: 3}
+  wallHitSound2: {fileID: 8300000, guid: fff8d7d802507ca48b20b26eefe80a37, type: 3}
 --- !u!114 &11492270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,7 +206,27 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: brickExplosionSound1
+      value: 
+      objectReference: {fileID: 8300000, guid: 798b1f2724b918441a5dacae15898303, type: 3}
+    - target: {fileID: 0}
+      propertyPath: brickExplosionSound2
+      value: 
+      objectReference: {fileID: 8300000, guid: ef4ad7bb1094a404da0829ba0eadd3bb, type: 3}
+    - target: {fileID: 0}
+      propertyPath: brickExplosionSound3
+      value: 
+      objectReference: {fileID: 8300000, guid: 4b3932c5162d06947819aacdcb5d6bed, type: 3}
+    - target: {fileID: 0}
+      propertyPath: wallHitSound1
+      value: 
+      objectReference: {fileID: 8300000, guid: 69970ff006c9f254d8a16863e7d863c5, type: 3}
+    - target: {fileID: 0}
+      propertyPath: wallHitSound2
+      value: 
+      objectReference: {fileID: 8300000, guid: fff8d7d802507ca48b20b26eefe80a37, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 163650}
