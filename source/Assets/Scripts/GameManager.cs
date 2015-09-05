@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
             var nextLevel = (level + 1).ToString("00");
 
             // Player was playing the last level?
-            if (nextLevel == "03")
+            if (nextLevel == "10")
             {
                 // TODO: show a message and go back to main menu.
                 Debug.Log("You win all levels!");
@@ -95,6 +95,11 @@ public class GameManager : MonoBehaviour
 
         // Disable this GameManager.
         enabled = false;
+    }
+
+    public int GetCurrentLevel()
+    {
+        return level;
     }
 
     public void LoseLife()

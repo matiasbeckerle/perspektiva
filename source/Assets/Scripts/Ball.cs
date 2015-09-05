@@ -12,10 +12,14 @@ public class Ball : MonoBehaviour
 
     private Rigidbody rb;
     private bool playing = false; // TODO: "playing" could be "GameManager" responsability.
+    private float initialVelocityPerLevel;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        // Each level adds a little bit of velocity to make it challenger.
+        initialVelocityPerLevel = initialVelocity + (50 * GameManager.Instance.GetCurrentLevel());
     }
 
     void Update()
@@ -25,7 +29,8 @@ public class Ball : MonoBehaviour
             playing = true;
             transform.parent = null;
             rb.isKinematic = false;
-            rb.AddForce(new Vector3(initialVelocity, initialVelocity, 0));
+
+            rb.AddForce(new Vector3(initialVelocityPerLevel, initialVelocityPerLevel, 0));
         }
     }
 
