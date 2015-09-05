@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Boundary
-  m_Shader: {fileID: 4800000, guid: 0f4e9d95140a70941b6ae24d42446aa2, type: 3}
+  m_Name: Brick
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -80,6 +80,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _SpecGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _ToonShade
         second:
           m_Texture: {fileID: 0}
@@ -121,14 +128,6 @@ Material:
         second: .5
       data:
         first:
-          name: _Shininess
-        second: .078125
-      data:
-        first:
-          name: _Smoothness
-        second: .5
-      data:
-        first:
           name: _Parallax
         second: .0199999996
       data:
@@ -138,7 +137,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .5
+        second: .100000001
       data:
         first:
           name: _BumpScale
@@ -171,10 +170,6 @@ Material:
         first:
           name: _Outline
         second: .00499999989
-      data:
-        first:
-          name: _EdgeLength
-        second: 10
     m_Colors:
       data:
         first:
@@ -183,11 +178,11 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .0745098069, g: 1, b: 0, a: 1}
+        second: {r: .0758621693, g: 1, b: 0, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: .5, g: .5, b: .5, a: 1}
+        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
       data:
         first:
           name: _OutlineColor
