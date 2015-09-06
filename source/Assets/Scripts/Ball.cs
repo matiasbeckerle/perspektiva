@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     public AudioClip brickExplosionSound3;
     public AudioClip wallHitSound1;
     public AudioClip wallHitSound2;
+    public GameObject sparks;
 
     private Rigidbody rb;
     private bool playing = false; // TODO: "playing" could be "GameManager" responsability.
@@ -42,6 +43,10 @@ public class Ball : MonoBehaviour
         }
         else
         {
+            // Add sparks particles and removes it after some seconds.
+            var sparksInstance = Instantiate(sparks, gameObject.transform.position, gameObject.transform.rotation);
+            Destroy(sparksInstance, 3);
+
             SoundManager.Instance.RandomizeSfx(wallHitSound1, wallHitSound2);
         }
     }

@@ -173,6 +173,7 @@ MonoBehaviour:
     type: 3}
   wallHitSound1: {fileID: 8300000, guid: 69970ff006c9f254d8a16863e7d863c5, type: 3}
   wallHitSound2: {fileID: 8300000, guid: fff8d7d802507ca48b20b26eefe80a37, type: 3}
+  sparks: {fileID: 193340, guid: 5edea68c6a721364bb138043834d7703, type: 2}
 --- !u!114 &11492270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,6 +248,10 @@ Prefab:
       propertyPath: initialVelocity
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sparks
+      value: 
+      objectReference: {fileID: 193340, guid: 5edea68c6a721364bb138043834d7703, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 163650}
