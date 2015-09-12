@@ -14,10 +14,12 @@ public class Ball : MonoBehaviour
     private Rigidbody rb;
     private bool playing = false; // TODO: "playing" could be "GameManager" responsability.
     private float initialVelocityPerLevel;
+    private CameraShake shaker;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        shaker = GetComponent<CameraShake>();
 
         // Each level adds a little bit of velocity to make it challenger.
         initialVelocityPerLevel = initialVelocity + (50 * GameManager.Instance.GetCurrentLevel());
@@ -43,6 +45,8 @@ public class Ball : MonoBehaviour
         }
         else
         {
+            shaker.Shake(1);
+
             // Add sparks particles and removes it after some seconds.
             var sparksInstance = Instantiate(sparks, gameObject.transform.position, gameObject.transform.rotation);
             Destroy(sparksInstance, 3);

@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2338102}
   - 54: {fileID: 5415116}
   - 114: {fileID: 11401136}
+  - 114: {fileID: 11483794}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -174,6 +175,19 @@ MonoBehaviour:
   wallHitSound1: {fileID: 8300000, guid: 69970ff006c9f254d8a16863e7d863c5, type: 3}
   wallHitSound2: {fileID: 8300000, guid: fff8d7d802507ca48b20b26eefe80a37, type: 3}
   sparks: {fileID: 193340, guid: 5edea68c6a721364bb138043834d7703, type: 2}
+--- !u!114 &11483794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf9095c65dfc834487d9e9c901e01e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: .0500000007
+  shakeDecreaseFactor: 2
 --- !u!114 &11492270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,6 +266,22 @@ Prefab:
       propertyPath: sparks
       value: 
       objectReference: {fileID: 193340, guid: 5edea68c6a721364bb138043834d7703, type: 2}
+    - target: {fileID: 0}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 2012118, guid: 0c74d2eac2edabf4f881c1a5adf8b210, type: 2}
+    - target: {fileID: 0}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 164774, guid: 0c74d2eac2edabf4f881c1a5adf8b210, type: 2}
+    - target: {fileID: 0}
+      propertyPath: shakeAmount
+      value: .0500000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: shakeDecreaseFactor
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 163650}
