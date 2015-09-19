@@ -18,7 +18,18 @@ public class MainMenu : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-        gameObject.SetActive(false);
+    }
+
+    void Start()
+    {
+        if (GameManager.Instance.IsGameStarted())
+        {
+            Hide();
+        }
+        else
+        {
+            Show();
+        }
     }
 
     /// <summary>
@@ -26,6 +37,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void Show()
     {
+        GameManager.Instance.PauseGame();
         gameObject.SetActive(true);
     }
 
@@ -35,5 +47,16 @@ public class MainMenu : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+        GameManager.Instance.ResumeGame();
+    }
+
+    public void OnPlayButtonClick()
+    {
+        Application.LoadLevel("Level01");
+    }
+
+    public void OnExitButtonClick()
+    {
+        Application.Quit();
     }
 }

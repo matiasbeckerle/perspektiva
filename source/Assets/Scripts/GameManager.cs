@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float levelStartDelay = 2f;
     public float playerSetupDelay = 1f;
 
+    private bool gameStarted = false;
     private int lifes = 3;
     private int level = 1;
     private int bricks = 0;
@@ -32,21 +33,23 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
-    {
-        // Initialize the first level.
-        InitGame();
-    }
-
     private void OnLevelWasLoaded(int index)
     {
-        level++;
-        InitGame();
+        // Increase level only when the game already started.
+        if (gameStarted)
+        {
+            level++;
+        }
+
+        InitLevel();
     }
 
-    private void InitGame()
+    public void InitLevel()
     {
+        gameStarted = true;
+
         // UI updates.
+        MainMenu.Instance.Hide();
         ModalDialog.Instance.Show("Level " + level, levelStartDelay);
         InGameUI.Instance.UpdateCurrentLevel(level);
         InGameUI.Instance.UpdateLifesQuantity(lifes);
@@ -123,5 +126,20 @@ public class GameManager : MonoBehaviour
     {
         bricks--;
         CheckStatus();
+    }
+
+    public bool IsGameStarted()
+    {
+        return gameStarted;
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }
