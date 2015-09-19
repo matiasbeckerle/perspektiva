@@ -7,6 +7,10 @@ public class Loader : MonoBehaviour
     [SerializeField]
     GameObject modalDialog;
 
+    // MainMenu prefab to instantiate.
+    [SerializeField]
+    GameObject mainMenu;
+
     // InGameUI prefab to instantiate.
     [SerializeField]
     GameObject inGameUI;
@@ -26,6 +30,10 @@ public class Loader : MonoBehaviour
         if (ModalDialog.Instance == null)
         {
             Instantiate(modalDialog);
+        }
+        if (MainMenu.Instance == null)
+        {
+            Instantiate(mainMenu);
         }
         if (InGameUI.Instance == null)
         {
