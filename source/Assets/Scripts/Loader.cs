@@ -3,9 +3,17 @@ using System.Collections;
 
 public class Loader : MonoBehaviour
 {
-    // UIManager prefab to instantiate.
+    // ModalDialog prefab to instantiate.
     [SerializeField]
-    GameObject uiManager;
+    GameObject modalDialog;
+
+    // MainMenu prefab to instantiate.
+    [SerializeField]
+    GameObject mainMenu;
+
+    // InGameUI prefab to instantiate.
+    [SerializeField]
+    GameObject inGameUI;
 
     // SoundManager prefab to instantiate.
     [SerializeField]
@@ -17,20 +25,24 @@ public class Loader : MonoBehaviour
 
     void Awake()
     {
-        // Check if a UIManager has already been assigned to static variable UIManager.instance or if it's still null.
-        if (UIManager.Instance == null)
-        {
-            Instantiate(uiManager);
-        }
+        // Check if the instances have already been assigned to static variables or they are still null.
 
-        // Check if a SoundManager has already been assigned to static variable SoundManager.instance or if it's still null.
+        if (ModalDialog.Instance == null)
+        {
+            Instantiate(modalDialog);
+        }
+        if (MainMenu.Instance == null)
+        {
+            Instantiate(mainMenu);
+        }
+        if (InGameUI.Instance == null)
+        {
+            Instantiate(inGameUI);
+        }
         if (SoundManager.Instance == null)
         {
             Instantiate(soundManager);
         }
-
-        // GameManager should be the last one to load.
-        // Check if a GameManager has already been assigned to static variable GameManager.instance or if it's still null.
         if (GameManager.Instance == null)
         {
             Instantiate(gameManager);

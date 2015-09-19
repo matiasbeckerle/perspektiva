@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float levelStartDelay = 2f;
     public float playerSetupDelay = 1f;
 
+    private bool gameStarted = false;
     private int lifes = 3;
     private int level = 1;
     private int bricks = 0;
@@ -30,24 +31,29 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-
-        // Initialize the first level.
-        InitGame();
     }
 
     private void OnLevelWasLoaded(int index)
     {
-        level++;
-        InitGame();
+        // Increase level only when the game already started.
+        if (gameStarted)
+        {
+            level++;
+        }
+
+        InitLevel();
     }
 
-    private void InitGame()
+    public void InitLevel()
     {
+        gameStarted = true;
+
         // UI updates.
-        UIManager.Instance.ShowMessage("Level " + level, levelStartDelay);
-        UIManager.Instance.UpdateCurrentLevel(level);
-        UIManager.Instance.UpdateLifesQuantity(lifes);
-        UIManager.Instance.ShowStats();
+        MainMenu.Instance.Hide();
+        ModalDialog.Instance.Show("Level " + level, levelStartDelay);
+        InGameUI.Instance.UpdateCurrentLevel(level);
+        InGameUI.Instance.UpdateLifesQuantity(lifes);
+        InGameUI.Instance.Show();
 
         // Keep quantity of bricks in the current level.
         bricks = GameObject.FindGameObjectsWithTag("Brick").Length;
@@ -91,7 +97,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        UIManager.Instance.ShowMessage("Game Over");
+        ModalDialog.Instance.Show("Game Over");
 
         // Disable this GameManager.
         enabled = false;
@@ -105,7 +111,7 @@ public class GameManager : MonoBehaviour
     public void LoseLife()
     {
         lifes--;
-        UIManager.Instance.UpdateLifesQuantity(lifes);
+        InGameUI.Instance.UpdateLifesQuantity(lifes);
 
         Destroy(playerClone);
         Invoke("SetupPlayer", playerSetupDelay);
@@ -120,5 +126,20 @@ public class GameManager : MonoBehaviour
     {
         bricks--;
         CheckStatus();
+    }
+
+    public bool IsGameStarted()
+    {
+        return gameStarted;
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }
