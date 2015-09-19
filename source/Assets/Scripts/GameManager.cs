@@ -30,7 +30,10 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
 
+    void Start()
+    {
         // Initialize the first level.
         InitGame();
     }
@@ -44,10 +47,10 @@ public class GameManager : MonoBehaviour
     private void InitGame()
     {
         // UI updates.
-        UIManager.Instance.ShowMessage("Level " + level, levelStartDelay);
-        UIManager.Instance.UpdateCurrentLevel(level);
-        UIManager.Instance.UpdateLifesQuantity(lifes);
-        UIManager.Instance.ShowStats();
+        ModalDialog.Instance.Show("Level " + level, levelStartDelay);
+        InGameUI.Instance.UpdateCurrentLevel(level);
+        InGameUI.Instance.UpdateLifesQuantity(lifes);
+        InGameUI.Instance.Show();
 
         // Keep quantity of bricks in the current level.
         bricks = GameObject.FindGameObjectsWithTag("Brick").Length;
@@ -91,7 +94,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        UIManager.Instance.ShowMessage("Game Over");
+        ModalDialog.Instance.Show("Game Over");
 
         // Disable this GameManager.
         enabled = false;
@@ -105,7 +108,7 @@ public class GameManager : MonoBehaviour
     public void LoseLife()
     {
         lifes--;
-        UIManager.Instance.UpdateLifesQuantity(lifes);
+        InGameUI.Instance.UpdateLifesQuantity(lifes);
 
         Destroy(playerClone);
         Invoke("SetupPlayer", playerSetupDelay);
