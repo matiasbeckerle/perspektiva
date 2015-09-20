@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
     public static MainMenu Instance = null;
+    public GameObject playButton;
 
     void Awake()
     {
@@ -30,6 +32,18 @@ public class MainMenu : MonoBehaviour
         {
             Show();
         }
+
+        SetDefaultButton(playButton);
+    }
+
+    /// <summary>
+    /// Sets the default button as selected.
+    /// </summary>
+    /// <param name="defaultButton">The button to be set as selected.</param>
+    private void SetDefaultButton(GameObject defaultButton)
+    {
+        GameObject myEventSystem = GameObject.Find("EventSystem");
+        myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(defaultButton);
     }
 
     /// <summary>

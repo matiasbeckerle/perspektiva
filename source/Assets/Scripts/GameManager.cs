@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public float levelStartDelay = 2f;
     public float playerSetupDelay = 1f;
+    public AudioClip loseLifeSound;
 
     /// <summary>
     /// State that represents when the player has started a new game.
@@ -121,6 +122,7 @@ public class GameManager : MonoBehaviour
     {
         lifes--;
         InGameUI.Instance.UpdateLifesQuantity(lifes);
+        SoundManager.Instance.PlaySingle(loseLifeSound);
 
         Destroy(playerClone);
         Invoke("SetupPlayer", playerSetupDelay);
