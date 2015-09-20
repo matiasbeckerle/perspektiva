@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
     public static MainMenu Instance = null;
     public GameObject playButton;
 
+    private bool isVisible;
+
     void Awake()
     {
         if (Instance == null)
@@ -32,8 +34,6 @@ public class MainMenu : MonoBehaviour
         {
             Show();
         }
-
-        SetDefaultButton(playButton);
     }
 
     /// <summary>
@@ -52,7 +52,13 @@ public class MainMenu : MonoBehaviour
     public void Show()
     {
         GameManager.Instance.PauseGame();
+        SoundManager.Instance.PauseMusic();
+        SoundManager.Instance.PlayMainMenuTrack();
+
+        isVisible = true;
         gameObject.SetActive(true);
+
+        SetDefaultButton(playButton);
     }
 
     /// <summary>
@@ -61,7 +67,16 @@ public class MainMenu : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+        isVisible = false;
+
+        SoundManager.Instance.PauseMainMenuTrack();
+        SoundManager.Instance.PlayMusic();
         GameManager.Instance.ResumeGame();
+    }
+
+    public bool IsVisible()
+    {
+        return isVisible;
     }
 
     public void OnPlayButtonClick()
