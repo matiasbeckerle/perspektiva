@@ -12,9 +12,12 @@ public class Ball : MonoBehaviour
     public GameObject sparks;
 
     private Rigidbody rb;
-    private bool playing = false; // TODO: "playing" could be "GameManager" responsability.
     private float initialVelocityPerLevel;
     private CameraShake shaker;
+
+    private Camera mainCamera;
+    private Camera ballCamera;
+    private bool cameraSwitchEnabled = false;
 
     void Awake()
     {
@@ -23,18 +26,46 @@ public class Ball : MonoBehaviour
 
         // Each level adds a little bit of velocity to make it challenger.
         initialVelocityPerLevel = initialVelocity + (50 * GameManager.Instance.GetCurrentLevel());
+
+        SetupCameras();
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && !playing)
+        if (Input.GetAxisRaw("Fire1") != 0)
         {
-            playing = true;
-            transform.parent = null;
-            rb.isKinematic = false;
+            if (!GameManager.Instance.IsPlaying())
+            {
+                cameraSwitchEnabled = false;
+                Invoke("EnableCameraSwitch", 1);
 
-            rb.AddForce(new Vector3(initialVelocityPerLevel, initialVelocityPerLevel, 0));
+                GameManager.Instance.SetPlaying(true);
+                transform.parent = null;
+                rb.isKinematic = false;
+                rb.AddForce(new Vector3(initialVelocityPerLevel, initialVelocityPerLevel, 0));
+            }
+            else if (cameraSwitchEnabled)
+            {
+                mainCamera.enabled = false;
+                ballCamera.enabled = true;
+            }
         }
+        else
+        {
+            ballCamera.enabled = false;
+            mainCamera.enabled = true;
+        }
+    }
+
+    void SetupCameras()
+    {
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        ballCamera = transform.Find("BallCamera").GetComponent<Camera>();
+    }
+
+    void EnableCameraSwitch()
+    {
+        cameraSwitchEnabled = true;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -52,6 +83,14 @@ public class Ball : MonoBehaviour
             Destroy(sparksInstance, 3);
 
             SoundManager.Instance.RandomizeSfx(wallHitSound1, wallHitSound2);
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (mainCamera != null)
+        {
+            mainCamera.enabled = true;
         }
     }
 }

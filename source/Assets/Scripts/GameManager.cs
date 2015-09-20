@@ -13,7 +13,16 @@ public class GameManager : MonoBehaviour
     public float levelStartDelay = 2f;
     public float playerSetupDelay = 1f;
 
+    /// <summary>
+    /// State that represents when the player has started a new game.
+    /// </summary>
     private bool gameStarted = false;
+
+    /// <summary>
+    /// State that represents when the ball is moving.
+    /// </summary>
+    private bool playing = false;
+
     private int lifes = 3;
     private int level = 1;
     private int bricks = 0;
@@ -131,6 +140,16 @@ public class GameManager : MonoBehaviour
     public bool IsGameStarted()
     {
         return gameStarted;
+    }
+
+    public bool IsPlaying()
+    {
+        return playing;
+    }
+
+    public void SetPlaying(bool value)
+    {
+        playing = value;
     }
 
     public void PauseGame()
