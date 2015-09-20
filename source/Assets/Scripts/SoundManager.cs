@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance = null; // Allows other scripts to call functions from SoundManager.
 
     public AudioSource efxSource; // Drag a reference to the audio source which will play the sound effects.
+    public AudioSource mainMenuMusicSource; // Drag a reference to the audio source which will play the music.
     public AudioSource musicSource; // Drag a reference to the audio source which will play the music.
     public float lowPitchRange = .95f; // The lowest a sound effect will be randomly pitched.
     public float highPitchRange = 1.05f; // The highest a sound effect will be randomly pitched.
@@ -58,5 +59,37 @@ public class SoundManager : MonoBehaviour
 
         // Play the clip.
         efxSource.Play();
+    }
+
+    public void PlayMainMenuTrack()
+    {
+        if (!mainMenuMusicSource.isPlaying)
+        {
+            mainMenuMusicSource.Play();
+        }
+    }
+
+    public void PauseMainMenuTrack()
+    {
+        if (mainMenuMusicSource.isPlaying)
+        {
+            mainMenuMusicSource.Pause();
+        }
+    }
+
+    public void PlayMusic()
+    {
+        if (!musicSource.isPlaying)
+        {
+            musicSource.Play();
+        }
+    }
+
+    public void PauseMusic()
+    {
+        if (musicSource.isPlaying)
+        {
+            musicSource.Pause();
+        }
     }
 }

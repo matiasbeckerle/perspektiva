@@ -43,6 +43,24 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (MainMenu.Instance.IsVisible())
+            {
+                if (gameStarted)
+                {
+                    MainMenu.Instance.Hide();
+                }
+            }
+            else
+            {
+                MainMenu.Instance.Show();
+            }
+        }
+    }
+
     private void OnLevelWasLoaded(int index)
     {
         // Increase level only when the game already started.
@@ -57,6 +75,7 @@ public class GameManager : MonoBehaviour
     public void InitLevel()
     {
         gameStarted = true;
+        playing = false;
 
         // UI updates.
         MainMenu.Instance.Hide();
