@@ -3,15 +3,59 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance = null; // Allows other scripts to call functions from SoundManager.
+    public static SoundManager Instance = null;
 
-    public AudioSource efxSource; // Drag a reference to the audio source which will play the sound effects.
-    public AudioSource mainMenuMusicSource; // Drag a reference to the audio source which will play the music.
-    public AudioSource musicSource; // Drag a reference to the audio source which will play the music.
-    public float lowPitchRange = .95f; // The lowest a sound effect will be randomly pitched.
-    public float highPitchRange = 1.05f; // The highest a sound effect will be randomly pitched.
+    /// <summary>
+    /// Drag a reference to the audio source which will play the sound effects.
+    /// </summary>
+    public AudioSource efxSource;
 
-    private void Awake()
+    /// <summary>
+    /// Drag a reference to the audio source which will play the main menu music.
+    /// </summary>
+    public AudioSource mainMenuMusicSource;
+
+    /// <summary>
+    /// Drag a reference to the audio source which will play the game music.
+    /// </summary>
+    public AudioSource musicSource;
+
+    /// <summary>
+    /// Collection of tracks to be played as game music.
+    /// </summary>
+    public AudioClip[] playlist;
+
+    /// <summary>
+    /// The lowest a sound effect will be randomly pitched.
+    /// </summary>
+    public float lowPitchRange = 0.95f;
+
+    /// <summary>
+    /// The highest a sound effect will be randomly pitched.
+    /// </summary>
+    public float highPitchRange = 1.05f;
+
+    /// <summary>
+    /// Flag to keep track if game music should be playing or not.
+    /// </summary>
+    private bool _inGameMusicPlaying = false;
+
+    /// <summary>
+    /// Index of track being played.
+    /// </summary>
+    private int _currentTrack = 0;
+
+    /// <summary>
+    /// Index of next track to be played.
+    /// </summary>
+    private int _nextTrack = 0;
+
+    /// <summary>
+    /// Used to change the current track because track playing time never gets the full time.
+    /// </summary>
+    private float _paddingBetweenTracks = 0.01f;
+
+    protected void Awake()
     {
         if (Instance == null)
         {
@@ -22,45 +66,55 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
         DontDestroyOnLoad(gameObject);
+    }
+
+    protected void Update()
+    {
+        // Check for track changes.
+        if (musicSource.clip == null || (musicSource.time + _paddingBetweenTracks) >= playlist[_currentTrack].length)
+        {
+            ChangeTrack();
+        }
+
+        // Play/Pause.
+        if (_inGameMusicPlaying && !musicSource.isPlaying)
+        {
+            musicSource.Play();
+        }
+        else if (!_inGameMusicPlaying && musicSource.isPlaying)
+        {
+            musicSource.Pause();
+        }
     }
 
     /// <summary>
     /// Used to play single sound clips.
     /// </summary>
-    /// <param name="clip"></param>
+    /// <param name="clip">Clip to play.</param>
     public void PlaySingle(AudioClip clip)
     {
-        // Set the clip of our efxSource audio source to the clip passed in as a parameter.
         efxSource.clip = clip;
-
-        // Play the clip.
         efxSource.Play();
     }
 
     /// <summary>
     /// Chooses randomly between various audio clips and slightly changes their pitch.
     /// </summary>
-    /// <param name="clips"></param>
+    /// <param name="clips">Clips to play.</param>
     public void RandomizeSfx(params AudioClip[] clips)
     {
-        // Generate a random number between 0 and the length of our array of clips passed in.
         int randomIndex = Random.Range(0, clips.Length);
-
-        // Choose a random pitch to play back our clip at between our high and low pitch ranges.
         float randomPitch = Random.Range(lowPitchRange, highPitchRange);
 
-        // Set the pitch of the audio source to the randomly chosen pitch.
         efxSource.pitch = randomPitch;
-
-        // Set the clip to the clip at our randomly chosen index.
         efxSource.clip = clips[randomIndex];
-
-        // Play the clip.
         efxSource.Play();
     }
 
+    /// <summary>
+    /// Used to play the main menu track.
+    /// </summary>
     public void PlayMainMenuTrack()
     {
         if (!mainMenuMusicSource.isPlaying)
@@ -69,6 +123,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Pauses the main menu track.
+    /// </summary>
     public void PauseMainMenuTrack()
     {
         if (mainMenuMusicSource.isPlaying)
@@ -77,19 +134,36 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Used to play the game music sequentially.
+    /// </summary>
     public void PlayMusic()
     {
-        if (!musicSource.isPlaying)
-        {
-            musicSource.Play();
-        }
+        _inGameMusicPlaying = true;
     }
 
+    /// <summary>
+    /// Pauses the game music.
+    /// </summary>
     public void PauseMusic()
     {
-        if (musicSource.isPlaying)
+        _inGameMusicPlaying = false;
+    }
+
+    /// <summary>
+    /// Changes the music track for the next one in the playlist.
+    /// </summary>
+    private void ChangeTrack()
+    {
+        musicSource.clip = playlist[_nextTrack];
+
+        _currentTrack = _nextTrack;
+        _nextTrack++;
+
+        // Reset playlist?
+        if (_nextTrack == playlist.Length)
         {
-            musicSource.Pause();
+            _nextTrack = 0;
         }
     }
 }
