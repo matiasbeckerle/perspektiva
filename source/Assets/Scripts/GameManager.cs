@@ -6,30 +6,64 @@ using System.Collections;
 /// </summary>
 public class GameManager : MonoBehaviour
 {
-    // Static instance of GameManager which allows it to be accessed by any other script.
+    /// <summary>
+    /// Static instance of the class.
+    /// </summary>
     public static GameManager Instance = null;
 
+    /// <summary>
+    /// Player prefab reference.
+    /// </summary>
     public GameObject player;
+
+    /// <summary>
+    /// Time in seconds for showing level splash.
+    /// </summary>
     public float levelStartDelay = 2f;
+
+    /// <summary>
+    /// Time in seconds for showing up the player on game start.
+    /// </summary>
     public float playerSetupDelay = 1f;
+
+    /// <summary>
+    /// Lifes to be used when the game starts.
+    /// </summary>
+    public int initialLifes = 3;
+
+    /// <summary>
+    /// Clip to play when the player loses a life.
+    /// </summary>
     public AudioClip loseLifeSound;
 
     /// <summary>
     /// State that represents when the player has started a new game.
     /// </summary>
-    private bool gameStarted = false;
+    private bool _gameStarted = false;
 
     /// <summary>
     /// State that represents when the ball is moving.
     /// </summary>
-    private bool playing = false;
+    private bool _playing = false;
 
-    private int lifes = 3;
-    private int level = 1;
-    private int bricks = 0;
-    private GameObject playerClone;
+    /// <summary>
+    /// Current player's lifes.
+    /// </summary>
+    private int _lifes = 0;
 
-    void Awake()
+    /// <summary>
+    /// Current level.
+    /// </summary>
+    private int _level = 1;
+
+    /// <summary>
+    /// To keep track of the quantity of bricks in the current level.
+    /// </summary>
+    private int _bricks = 0;
+
+    private GameObject _playerClone;
+
+    protected void Awake()
     {
         if (Instance == null)
         {
@@ -43,13 +77,13 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Update()
+    protected void Update()
     {
         if (Input.GetButtonDown("Cancel"))
         {
             if (MainMenu.Instance.IsVisible())
             {
-                if (gameStarted)
+                if (_gameStarted)
                 {
                     MainMenu.Instance.Hide();
                 }
@@ -61,61 +95,71 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnLevelWasLoaded(int index)
+    protected void OnLevelWasLoaded(int index)
     {
-        // Increase level only when the game already started.
-        if (gameStarted)
+        if (_gameStarted)
         {
-            level++;
+            // Increase level only when the game already started.
+            _level++;
+        }
+        else
+        {
+            ResetGame();
         }
 
         InitLevel();
     }
 
+    /// <summary>
+    /// Setup a new level.
+    /// </summary>
     public void InitLevel()
     {
-        gameStarted = true;
-        playing = false;
+        ResumeGame();
+
+        _playing = false;
 
         // UI updates.
         MainMenu.Instance.Hide();
-        ModalDialog.Instance.Show("Level " + level, levelStartDelay);
-        InGameUI.Instance.UpdateCurrentLevel(level);
-        InGameUI.Instance.UpdateLifesQuantity(lifes);
+        ModalDialog.Instance.Show("Level " + _level, levelStartDelay);
+        InGameUI.Instance.UpdateCurrentLevel(_level);
+        InGameUI.Instance.UpdateLifesQuantity(_lifes);
         InGameUI.Instance.Show();
 
         // Keep quantity of bricks in the current level.
-        bricks = GameObject.FindGameObjectsWithTag("Brick").Length;
+        _bricks = GameObject.FindGameObjectsWithTag("Brick").Length;
 
         SetupPlayer();
     }
 
     /// <summary>
-    /// Instantiates the player's prefab.
+    /// Instantiates a player's prefab clone.
     /// </summary>
     private void SetupPlayer()
     {
-        playerClone = Instantiate(player, player.transform.position, Quaternion.identity) as GameObject;
+        _playerClone = Instantiate(player, player.transform.position, Quaternion.identity) as GameObject;
     }
 
+    /// <summary>
+    /// General check: lifes, game over, bricks.
+    /// </summary>
     private void CheckStatus()
     {
-        // Player still lives?
-        if (lifes == 0)
+        // Player is still alive?
+        if (_lifes == 0)
         {
             GameOver();
         }
 
         // Player wins the current level.
-        if (bricks == 0)
+        if (_bricks == 0)
         {
-            var nextLevel = (level + 1).ToString("00");
+            var nextLevel = (_level + 1).ToString("00");
 
             // Player was playing the last level?
-            if (nextLevel == "10")
+            if (nextLevel == "02")
             {
-                // TODO: show a message and go back to main menu.
-                Debug.Log("You win all levels!");
+                Win();
             }
             else
             {
@@ -124,26 +168,52 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Player loses the game. No more lifes!
+    /// </summary>
     private void GameOver()
     {
-        ModalDialog.Instance.Show("Game Over");
+        _gameStarted = false;
 
-        // Disable this GameManager.
-        enabled = false;
+        ModalDialog.Instance.Show("Game Over", 2, () => {
+            MainMenu.Instance.Show();
+        });
     }
 
+    /// <summary>
+    /// Player wins the game.
+    /// </summary>
+    private void Win()
+    {
+        _gameStarted = false;
+
+        PauseGame();
+
+        ModalDialog.Instance.Show("You WIN! You ROCK!");
+    }
+
+    /// <summary>
+    /// Gets the current level being played.
+    /// </summary>
+    /// <returns>The current level.</returns>
     public int GetCurrentLevel()
     {
-        return level;
+        return _level;
     }
 
+    /// <summary>
+    /// Discounts a life.
+    /// </summary>
     public void LoseLife()
     {
-        lifes--;
-        InGameUI.Instance.UpdateLifesQuantity(lifes);
+        _lifes--;
+
         SoundManager.Instance.PlaySingle(loseLifeSound);
 
-        Destroy(playerClone);
+        InGameUI.Instance.UpdateLifesQuantity(_lifes);
+
+        Destroy(_playerClone);
+
         Invoke("SetupPlayer", playerSetupDelay);
 
         CheckStatus();
@@ -154,32 +224,60 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void DestroyBrick()
     {
-        bricks--;
+        _bricks--;
         CheckStatus();
     }
 
+    /// <summary>
+    /// Verifies if the player has started a new game.
+    /// </summary>
+    /// <returns>If the player has started a new game or not.</returns>
     public bool IsGameStarted()
     {
-        return gameStarted;
+        return _gameStarted;
     }
 
+    /// <summary>
+    /// Verifies if the player has launched the ball and still moving.
+    /// </summary>
+    /// <returns>If the player has launched the ball and still moving.</returns>
     public bool IsPlaying()
     {
-        return playing;
+        return _playing;
     }
 
+    /// <summary>
+    /// Sets playing state.
+    /// </summary>
+    /// <param name="value">If the player has launched the ball and still moving.</param>
     public void SetPlaying(bool value)
     {
-        playing = value;
+        _playing = value;
     }
 
+    /// <summary>
+    /// Pauses the game. That was difficult, right?
+    /// </summary>
     public void PauseGame()
     {
         Time.timeScale = 0;
     }
 
+    /// <summary>
+    /// Resumes the game.
+    /// </summary>
     public void ResumeGame()
     {
         Time.timeScale = 1;
+    }
+
+    /// <summary>
+    /// Resets the game and prepare for a new one.
+    /// </summary>
+    private void ResetGame()
+    {
+        _level = 1;
+        _lifes = initialLifes;
+        _gameStarted = true;
     }
 }

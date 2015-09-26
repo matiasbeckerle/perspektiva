@@ -1,13 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 
 public class ModalDialog : MonoBehaviour
 {
+    /// <summary>
+    /// Static instance of the class.
+    /// </summary>
     public static ModalDialog Instance = null;
+
+    /// <summary>
+    /// Message to be shown.
+    /// </summary>
     public Text messageText;
 
-    void Awake()
+    protected void Awake()
     {
         if (Instance == null)
         {
@@ -20,6 +28,19 @@ public class ModalDialog : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         gameObject.SetActive(false);
+    }
+
+    protected void Update()
+    {
+        if (Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel") || Input.GetButtonDown("Fire1"))
+        {
+            Hide();
+
+            if (!GameManager.Instance.IsGameStarted())
+            {
+                MainMenu.Instance.Show();
+            }
+        }
     }
 
     /// <summary>
@@ -37,10 +58,11 @@ public class ModalDialog : MonoBehaviour
     /// </summary>
     /// <param name="message">The content to be shown.</param>
     /// <param name="secondsBeforeHiding">Seconds to wait before hiding the message.</param>
-    public void Show(string message, float secondsBeforeHiding)
+    /// <param name="callback">Action to be executed after finishing.</param>
+    public void Show(string message, float secondsBeforeHiding, Action callback = null)
     {
         Show(message);
-        Invoke("Hide", secondsBeforeHiding); // TODO: Is there any better way?
+        StartCoroutine(HideAfterTime(secondsBeforeHiding, callback));
     }
 
     /// <summary>
@@ -49,5 +71,23 @@ public class ModalDialog : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Hides the ModalDialog after a given time.
+    /// </summary>
+    /// <param name="seconds">Seconds to wait before hiding the message.</param>
+    /// <param name="callback">Action to be executed after finishing.</param>
+    /// <returns></returns>
+    private IEnumerator HideAfterTime(float seconds, Action callback = null)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        Hide();
+
+        if (callback != null)
+        {
+            callback();
+        }
     }
 }
