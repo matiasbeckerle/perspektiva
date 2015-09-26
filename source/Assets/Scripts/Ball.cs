@@ -42,7 +42,12 @@ public class Ball : MonoBehaviour
                 GameManager.Instance.SetPlaying(true);
                 transform.parent = null;
                 rb.isKinematic = false;
+
+                // Add some natural force.
                 rb.AddForce(new Vector3(initialVelocityPerLevel, initialVelocityPerLevel, 0));
+
+                // Add some rotation.
+                rb.AddTorque(new Vector3(7, 7, 7));
             }
             else if (cameraSwitchEnabled)
             {
