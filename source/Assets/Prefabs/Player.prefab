@@ -13,6 +13,7 @@ GameObject:
   - 92: {fileID: 9256508}
   - 114: {fileID: 11488288}
   - 114: {fileID: 11460808}
+  - 114: {fileID: 11487506}
   - 114: {fileID: 11434874}
   - 114: {fileID: 11434382}
   m_Layer: 0
@@ -318,6 +319,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shakeAmount: .0500000007
   shakeDecreaseFactor: 2
+--- !u!114 &11487506
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 103284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88a26a276b4e47619ce2c5adad33fab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monochrome: 0
+  grainIntensityMin: .100000001
+  grainIntensityMax: .300000012
+  grainSize: .5
+  scratchIntensityMin: 0
+  scratchIntensityMax: 0
+  scratchFPS: 1
+  scratchJitter: 0
+  grainTexture: {fileID: 2800000, guid: ffa9c02760c2b4e8eb9814ec06c4b05b, type: 3}
+  scratchTexture: {fileID: 2800000, guid: 6205c27cc031f4e66b8ea90d1bfaa158, type: 3}
+  shaderRGB: {fileID: 4800000, guid: 5d7f4c401ae8946bcb0d6ff68a9e7466, type: 3}
+  shaderYUV: {fileID: 4800000, guid: 0e447868506ba49f0a73235b8a8b647a, type: 3}
 --- !u!114 &11488288
 MonoBehaviour:
   m_ObjectHideFlags: 1
