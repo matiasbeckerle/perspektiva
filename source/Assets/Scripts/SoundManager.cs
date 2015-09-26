@@ -3,6 +3,9 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour
 {
+    /// <summary>
+    /// Static instance of the class.
+    /// </summary>
     public static SoundManager Instance = null;
 
     /// <summary>
