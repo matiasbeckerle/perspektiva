@@ -54,13 +54,21 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Current level.
     /// </summary>
-    private int _level = 1;
+    private int _level = 0;
+
+    /// <summary>
+    /// Last level for play.
+    /// </summary>
+    private int _lastLevel = 9;
 
     /// <summary>
     /// To keep track of the quantity of bricks in the current level.
     /// </summary>
     private int _bricks = 0;
 
+    /// <summary>
+    /// A player clone representation.
+    /// </summary>
     private GameObject _playerClone;
 
     protected void Awake()
@@ -97,16 +105,7 @@ public class GameManager : MonoBehaviour
 
     protected void OnLevelWasLoaded(int index)
     {
-        if (_gameStarted)
-        {
-            // Increase level only when the game already started.
-            _level++;
-        }
-        else
-        {
-            ResetGame();
-        }
-
+        _level++;
         InitLevel();
     }
 
@@ -116,8 +115,6 @@ public class GameManager : MonoBehaviour
     public void InitLevel()
     {
         ResumeGame();
-
-        _playing = false;
 
         // UI updates.
         MainMenu.Instance.Hide();
@@ -141,6 +138,33 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Pauses the game. That was difficult, right?
+    /// </summary>
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    /// <summary>
+    /// Resumes the game.
+    /// </summary>
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
+    /// <summary>
+    /// Resets the game and prepare for a new one.
+    /// </summary>
+    public void ResetGame()
+    {
+        _level = 0;
+        _lifes = initialLifes;
+        _gameStarted = true;
+        _playing = false;
+    }
+
+    /// <summary>
     /// General check: lifes, game over, bricks.
     /// </summary>
     private void CheckStatus()
@@ -154,16 +178,15 @@ public class GameManager : MonoBehaviour
         // Player wins the current level.
         if (_bricks == 0)
         {
-            var nextLevel = (_level + 1).ToString("00");
-
             // Player was playing the last level?
-            if (nextLevel == "02")
+            if (_level == _lastLevel)
             {
                 Win();
             }
             else
             {
-                Application.LoadLevel("Level" + nextLevel);
+                var nextLevel = _level + 1;
+                Application.LoadLevel("Level" + nextLevel.ToString("00"));
             }
         }
     }
@@ -175,7 +198,8 @@ public class GameManager : MonoBehaviour
     {
         _gameStarted = false;
 
-        ModalDialog.Instance.Show("Game Over", 2, () => {
+        ModalDialog.Instance.Show("Game Over", 2, () =>
+        {
             MainMenu.Instance.Show();
         });
     }
@@ -253,31 +277,5 @@ public class GameManager : MonoBehaviour
     public void SetPlaying(bool value)
     {
         _playing = value;
-    }
-
-    /// <summary>
-    /// Pauses the game. That was difficult, right?
-    /// </summary>
-    public void PauseGame()
-    {
-        Time.timeScale = 0;
-    }
-
-    /// <summary>
-    /// Resumes the game.
-    /// </summary>
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-    }
-
-    /// <summary>
-    /// Resets the game and prepare for a new one.
-    /// </summary>
-    private void ResetGame()
-    {
-        _level = 1;
-        _lifes = initialLifes;
-        _gameStarted = true;
     }
 }
