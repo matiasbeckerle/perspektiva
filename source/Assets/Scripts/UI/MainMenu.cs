@@ -5,12 +5,22 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour
 {
+    /// <summary>
+    /// Static instance of the class.
+    /// </summary>
     public static MainMenu Instance = null;
+
+    /// <summary>
+    /// The play button reference.
+    /// </summary>
     public GameObject playButton;
 
-    private bool isVisible;
+    /// <summary>
+    /// Flag for knowing when the main menu is visible or not.
+    /// </summary>
+    private bool _isVisible;
 
-    void Awake()
+    protected void Awake()
     {
         if (Instance == null)
         {
@@ -24,7 +34,7 @@ public class MainMenu : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    protected void Start()
     {
         if (GameManager.Instance.IsGameStarted())
         {
@@ -55,7 +65,7 @@ public class MainMenu : MonoBehaviour
         SoundManager.Instance.PauseMusic();
         SoundManager.Instance.PlayMainMenuTrack();
 
-        isVisible = true;
+        _isVisible = true;
         gameObject.SetActive(true);
 
         SetDefaultButton(playButton);
@@ -67,23 +77,36 @@ public class MainMenu : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
-        isVisible = false;
+        _isVisible = false;
 
         SoundManager.Instance.PauseMainMenuTrack();
         SoundManager.Instance.PlayMusic();
         GameManager.Instance.ResumeGame();
     }
 
+    /// <summary>
+    /// Gets if the main menu is visible or not.
+    /// </summary>
+    /// <returns>Main menu's visibility status.</returns>
     public bool IsVisible()
     {
-        return isVisible;
+        return _isVisible;
     }
 
+    /// <summary>
+    /// Callback for "play" button.
+    /// Starts a new game.
+    /// </summary>
     public void OnPlayButtonClick()
     {
+        GameManager.Instance.ResetGame();
         Application.LoadLevel("Level01");
     }
 
+    /// <summary>
+    /// Callback for "exit" button.
+    /// Closes the game.
+    /// </summary>
     public void OnExitButtonClick()
     {
         Application.Quit();
