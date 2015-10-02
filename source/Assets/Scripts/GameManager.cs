@@ -116,6 +116,8 @@ public class GameManager : MonoBehaviour
     {
         ResumeGame();
 
+        _playing = false;
+
         // UI updates.
         MainMenu.Instance.Hide();
         ModalDialog.Instance.Show("Level " + _level, levelStartDelay);
@@ -161,7 +163,6 @@ public class GameManager : MonoBehaviour
         _level = 0;
         _lifes = initialLifes;
         _gameStarted = true;
-        _playing = false;
     }
 
     /// <summary>
