@@ -25,6 +25,7 @@ public class Ball : MonoBehaviour
         shaker = GetComponent<CameraShake>();
 
         // Each level adds a little bit of velocity to make it challenger.
+        // TODO: review this.
         initialVelocityPerLevel = initialVelocity + (50 * GameManager.Instance.GetCurrentLevel());
 
         SetupCameras();
