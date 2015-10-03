@@ -91,10 +91,7 @@ public class GameManager : MonoBehaviour
         {
             if (MainMenu.Instance.IsVisible())
             {
-                if (_gameStarted)
-                {
-                    MainMenu.Instance.Hide();
-                }
+                MainMenu.Instance.OnCancelAction();
             }
             else
             {
