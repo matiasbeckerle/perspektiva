@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Loader : MonoBehaviour
 {
+    // DebugUI prefab to instantiate.
+    [SerializeField]
+    GameObject debugUI;
+
     // ModalDialog prefab to instantiate.
     [SerializeField]
     GameObject modalDialog;
@@ -27,6 +31,10 @@ public class Loader : MonoBehaviour
     {
         // Check if the instances have already been assigned to static variables or they are still null.
 
+        if (DebugUI.Instance == null)
+        {
+            Instantiate(debugUI);
+        }
         if (ModalDialog.Instance == null)
         {
             Instantiate(modalDialog);
