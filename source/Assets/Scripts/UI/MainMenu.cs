@@ -6,6 +6,13 @@ using System.Collections;
 public class MainMenu : MonoBehaviour
 {
     /// <summary>
+    /// To handle panels toggling, etc.
+    /// </summary>
+    public enum MenuPanel { Main, About };
+
+
+
+    /// <summary>
     /// Static instance of the class.
     /// </summary>
     public static MainMenu Instance = null;
@@ -24,6 +31,26 @@ public class MainMenu : MonoBehaviour
     /// The continue button reference.
     /// </summary>
     public GameObject continueButton;
+
+    /// <summary>
+    /// Reference for the "main" panel.
+    /// </summary>
+    public GameObject panelMain;
+
+    /// <summary>
+    /// Reference for the "about" panel.
+    /// </summary>
+    public GameObject panelAbout;
+
+    /// <summary>
+    /// Panel being used.
+    /// </summary>
+    private MenuPanel _currentPanel;
+
+    /// <summary>
+    /// Previous panel for back functionality.
+    /// </summary>
+    private MenuPanel _previousPanel;
 
     /// <summary>
     /// Flag for knowing when the main menu is visible or not.
@@ -100,8 +127,20 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void OnCancelAction()
+    {
+        if (_currentPanel != MenuPanel.Main)
+        {
+            Back();
+        }
+        else if (GameManager.Instance.IsGameStarted())
+        {
+            Hide();
+        }
+    }
+
     /// <summary>
-    /// Hides the InGameUI from the scene.
+    /// Hides the MainMenu from the scene.
     /// </summary>
     public void Hide()
     {
@@ -111,6 +150,49 @@ public class MainMenu : MonoBehaviour
         SoundManager.Instance.PauseMainMenuTrack();
         SoundManager.Instance.PlayMusic();
         GameManager.Instance.ResumeGame();
+    }
+
+    /// <summary>
+    /// Toggles visibility from a given panel and hides the others.
+    /// </summary>
+    void LoadPanel(MenuPanel panel = MenuPanel.Main)
+    {
+        // Save the previous panel.
+        _previousPanel = _currentPanel;
+
+        // Set current panel.
+        _currentPanel = panel;
+
+        // Hide all panels.
+        HidePanels();
+
+        switch (_currentPanel)
+        {
+            case MenuPanel.About:
+                panelAbout.SetActive(true);
+                break;
+
+            default:
+                panelMain.SetActive(true);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Sets visibility to false for all panels.
+    /// </summary>
+    private void HidePanels()
+    {
+        panelMain.SetActive(false);
+        panelAbout.SetActive(false);
+    }
+
+    /// <summary>
+    /// Loads the previous panel.
+    /// </summary>
+    private void Back()
+    {
+        LoadPanel(_previousPanel);
     }
 
     /// <summary>
@@ -139,6 +221,15 @@ public class MainMenu : MonoBehaviour
     public void OnContinueButtonClick()
     {
         Hide();
+    }
+
+    /// <summary>
+    /// Callback for "about" button.
+    /// Opens "About" panel.
+    /// </summary>
+    public void OnAboutButtonClick()
+    {
+        LoadPanel(MenuPanel.About);
     }
 
     /// <summary>
