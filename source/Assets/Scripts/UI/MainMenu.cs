@@ -16,6 +16,16 @@ public class MainMenu : MonoBehaviour
     public GameObject playButton;
 
     /// <summary>
+    /// The play button text reference.
+    /// </summary>
+    public Text playButtonText;
+
+    /// <summary>
+    /// The continue button reference.
+    /// </summary>
+    public GameObject continueButton;
+
+    /// <summary>
     /// Flag for knowing when the main menu is visible or not.
     /// </summary>
     private bool _isVisible;
@@ -57,7 +67,7 @@ public class MainMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Shows the InGameUI in the scene.
+    /// Shows the MainMenu in the scene.
     /// </summary>
     public void Show()
     {
@@ -68,7 +78,26 @@ public class MainMenu : MonoBehaviour
         _isVisible = true;
         gameObject.SetActive(true);
 
-        SetDefaultButton(playButton);
+        CheckButtonsState();
+    }
+
+    /// <summary>
+    /// Based on current game status, sets visibility and states for buttons.
+    /// </summary>
+    private void CheckButtonsState()
+    {
+        if(GameManager.Instance.IsGameStarted())
+        {
+            playButtonText.text = "New game";
+            continueButton.SetActive(true);
+            SetDefaultButton(continueButton);
+        }
+        else
+        {
+            playButtonText.text = "Play!";
+            continueButton.SetActive(false);
+            SetDefaultButton(playButton);
+        }
     }
 
     /// <summary>
@@ -101,6 +130,15 @@ public class MainMenu : MonoBehaviour
     {
         GameManager.Instance.ResetGame();
         Application.LoadLevel("Level01");
+    }
+
+    /// <summary>
+    /// Callback for "continue" button.
+    /// Closes the MainMenu in order to continue playing.
+    /// </summary>
+    public void OnContinueButtonClick()
+    {
+        Hide();
     }
 
     /// <summary>
