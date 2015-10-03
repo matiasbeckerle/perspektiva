@@ -597,7 +597,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1.5
   m_Text: 'This game is an open source project. For more information please check
-    out the repository: https://github.com/matiasbeckerle/breakout.'
+    out the repository: https://github.com/matiasbeckerle/perspektiva.'
 --- !u!114 &11408518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -985,7 +985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Breakout
+  m_Text: Perspektiva
 --- !u!114 &11453368
 MonoBehaviour:
   m_ObjectHideFlags: 1

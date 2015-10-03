@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Reflection;
 
+[assembly: AssemblyVersion("0.1.1.*")]
 public class Loader : MonoBehaviour
 {
     // DebugUI prefab to instantiate.
