@@ -4,8 +4,20 @@ using System.Collections;
 
 public class DebugUI : MonoBehaviour
 {
+    /// <summary>
+    /// Static instance of the class.
+    /// </summary>
     public static DebugUI Instance = null;
-    public Text framesPerSecond;
+
+    /// <summary>
+    /// Frames per second text reference.
+    /// </summary>
+    public Text framesPerSecondText;
+
+    /// <summary>
+    /// Game version text reference.
+    /// </summary>
+    public Text versionText;
 
     protected void Awake()
     {
@@ -26,8 +38,13 @@ public class DebugUI : MonoBehaviour
         }
     }
 
+    protected void Start()
+    {
+        versionText.text = "v" + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+    }
+
     /// <summary>
-    /// Shows the InGameUI in the scene.
+    /// Shows the DebugUI in the scene.
     /// </summary>
     public void Show()
     {
@@ -35,7 +52,7 @@ public class DebugUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Hides the InGameUI from the scene.
+    /// Hides the DebugUI from the scene.
     /// </summary>
     public void Hide()
     {
@@ -48,6 +65,6 @@ public class DebugUI : MonoBehaviour
     /// <param name="frames">Number of current quantity of frames per second.</param>
     public void UpdateFramesPerSecond(float frames = 0)
     {
-        framesPerSecond.text = frames.ToString("0.0");
+        framesPerSecondText.text = frames.ToString("0.0 FPS");
     }
 }
