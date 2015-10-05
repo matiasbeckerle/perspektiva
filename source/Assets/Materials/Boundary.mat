@@ -9,7 +9,7 @@ Material:
   m_Name: Boundary
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION
-  m_LightmapFlags: 1
+  m_LightmapFlags: 2
   m_CustomRenderQueue: 3000
   stringTagMap:
     RenderType: Transparent
@@ -187,7 +187,7 @@ Material:
       data:
         first:
           name: _EmissionColor
-        second: {r: .411764681, g: .10899654, b: .10899654, a: 1}
+        second: {r: .400000006, g: .0500000007, b: .0500000007, a: 1}
       data:
         first:
           name: _Color
