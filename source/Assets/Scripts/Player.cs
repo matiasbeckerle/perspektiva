@@ -3,10 +3,17 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
+    /// <summary>
+    /// Limits for player movements restriction.
+    /// </summary>
     public Boundary boundary;
-    public float speed = .5f;
 
-    void Update()
+    /// <summary>
+    /// Paddle's speed.
+    /// </summary>
+    public float speed = 0.5f;
+
+    protected void Update()
     {
         // Capture user input.
         var horizontalInput = Input.GetAxis("Horizontal");
