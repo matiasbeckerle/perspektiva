@@ -57,7 +57,7 @@ GameObject:
   - 23: {fileID: 2312282}
   - 114: {fileID: 11492270}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Paddle
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialVelocity: 500
+  sparks: {fileID: 193340, guid: 5edea68c6a721364bb138043834d7703, type: 2}
   brickExplosionSound1: {fileID: 8300000, guid: 798b1f2724b918441a5dacae15898303,
     type: 3}
   brickExplosionSound2: {fileID: 8300000, guid: ef4ad7bb1094a404da0829ba0eadd3bb,
@@ -251,7 +252,6 @@ MonoBehaviour:
     type: 3}
   wallHitSound1: {fileID: 8300000, guid: 69970ff006c9f254d8a16863e7d863c5, type: 3}
   wallHitSound2: {fileID: 8300000, guid: fff8d7d802507ca48b20b26eefe80a37, type: 3}
-  sparks: {fileID: 193340, guid: 5edea68c6a721364bb138043834d7703, type: 2}
 --- !u!114 &11434382
 MonoBehaviour:
   m_ObjectHideFlags: 1
