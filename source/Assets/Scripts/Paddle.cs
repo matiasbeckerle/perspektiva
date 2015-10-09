@@ -4,33 +4,32 @@ using System.Collections;
 public class Paddle : MonoBehaviour
 {
     /// <summary>
-    /// Limits for player movements restriction.
-    /// </summary>
-    public Boundary boundary;
-
-    /// <summary>
     /// Paddle's speed.
     /// </summary>
-    public float speed = 0.5f;
+    public float speed = 20;
 
-    protected void Update()
+    /// <summary>
+    /// Store the direction of the paddle's movement.
+    /// </summary>
+    Vector3 _movement;
+
+    /// <summary>
+    /// Rigidbody reference.
+    /// </summary>
+    private Rigidbody _rigidbody;
+
+    protected void Awake()
     {
-        // Capture user input.
-        var horizontalInput = Input.GetAxis("Horizontal");
-
-        // Create a new movement based on user input and speed.
-        var movement = new Vector3(horizontalInput, 0, 0);
-        movement = movement * speed;
-
-        // Move the player to it's current position plus the movement.
-        var newPosition = transform.position + movement;
-        newPosition = new Vector3(Mathf.Clamp(newPosition.x, boundary.xMin, boundary.xMax), newPosition.y, newPosition.z);
-        transform.position = newPosition;
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
-    [System.Serializable]
-    public class Boundary
+    protected void FixedUpdate()
     {
-        public float xMin, xMax;
+        float h = Input.GetAxisRaw("Horizontal");
+
+        _movement.Set(h, 0, 0);
+        _movement = _movement.normalized * speed * Time.deltaTime;
+
+        _rigidbody.MovePosition(transform.position + _movement);
     }
 }
