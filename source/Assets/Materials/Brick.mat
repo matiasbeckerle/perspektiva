@@ -7,9 +7,9 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Brick
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
+  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 2
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
@@ -85,34 +85,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ToonShade
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Ramp
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ShadowTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _FalloffTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -137,7 +109,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0
+        second: .5
       data:
         first:
           name: _BumpScale
@@ -162,28 +134,16 @@ Material:
         first:
           name: _Metallic
         second: 0
-      data:
-        first:
-          name: _BumpAmt
-        second: 10
-      data:
-        first:
-          name: _Outline
-        second: .00499999989
     m_Colors:
       data:
         first:
           name: _EmissionColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: .180392161, g: .0509803928, b: .137254909, a: 1}
       data:
         first:
           name: _Color
-        second: {r: .0758621693, g: 1, b: 0, a: 1}
+        second: {r: .952941179, g: .266666681, b: .0470588244, a: 1}
       data:
         first:
           name: _SpecColor
-        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-      data:
-        first:
-          name: _OutlineColor
         second: {r: 0, g: 0, b: 0, a: 1}
