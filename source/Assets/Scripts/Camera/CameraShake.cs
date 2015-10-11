@@ -61,7 +61,7 @@ public class CameraShake : MonoBehaviour
             _mainCamera.transform.localPosition += Random.insideUnitSphere * shakeAmount * elapsed;
 
             // Increase the elapsed time of camera being shake.
-            elapsed += Time.deltaTime * shakeDecreaseFactor;
+            elapsed += Time.fixedDeltaTime * shakeDecreaseFactor;
 
             yield return null;
         }
