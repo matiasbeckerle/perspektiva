@@ -115,9 +115,22 @@ public class GameManager : MonoBehaviour
 
         _playing = false;
 
-        // UI updates.
+        // UI updates:
         MainMenu.Instance.Hide();
-        ModalDialog.Instance.Show("Level " + _level, levelStartDelay);
+
+        if (_level == 1)
+        {
+            // In first level, show controls.
+            ModalDialog.Instance.Show("< >\n[movement]\n\naction button\n[launch/perspektiva]", 4, () =>
+            {
+                ModalDialog.Instance.Show("Level " + _level, levelStartDelay);
+            });
+        }
+        else
+        {
+            ModalDialog.Instance.Show("Level " + _level, levelStartDelay);
+        }
+
         InGameUI.Instance.UpdateCurrentLevel(_level);
         InGameUI.Instance.UpdateLifesQuantity(_lifes);
         InGameUI.Instance.Show();
