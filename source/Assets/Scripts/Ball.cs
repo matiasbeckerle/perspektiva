@@ -49,6 +49,11 @@ public class Ball : MonoBehaviour
     private float _initialVelocityPerLevel;
 
     /// <summary>
+    /// Used for a hack in order to limit the ball speed.
+    /// </summary>
+    private float _maxVelocityMagnitude = 20;
+
+    /// <summary>
     /// CameraShake effect script reference.
     /// </summary>
     private CameraShake _shaker;
@@ -68,20 +73,25 @@ public class Ball : MonoBehaviour
     /// </summary>
     private bool _cameraSwitchEnabled = false;
 
-    protected void Awake()
+    /// <summary>
+    /// Used to generate a random movement using secondary button.
+    /// </summary>
+    private int[] _negativeOrPositiveAxeOptions = new int[] { -1, 1 };
+
+    protected void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _shaker = GetComponent<CameraShake>();
 
-        // Each level adds a little bit of velocity to make it challenger.
-        // TODO: review this.
         _initialVelocityPerLevel = initialVelocity + (50 * GameManager.Instance.GetCurrentLevel());
 
         SetupCameras();
     }
 
-    protected void Update()
+    protected void FixedUpdate()
     {
+        Time.timeScale = 1;
+
         if (Input.GetAxisRaw("Fire1") != 0)
         {
             if (!GameManager.Instance.IsPlaying())
@@ -105,10 +115,25 @@ public class Ball : MonoBehaviour
                 _ballCamera.enabled = true;
             }
         }
+        else if (Input.GetAxisRaw("Fire2") != 0)
+        {
+            _rigidbody.AddForce(new Vector3(
+                _initialVelocityPerLevel * _negativeOrPositiveAxeOptions[Random.Range(0, _negativeOrPositiveAxeOptions.Length)],
+                _initialVelocityPerLevel * _negativeOrPositiveAxeOptions[Random.Range(0, _negativeOrPositiveAxeOptions.Length)],
+                0));
+            Time.timeScale = 0.2f;
+        }
         else
         {
             _ballCamera.enabled = false;
             _mainCamera.enabled = true;
+        }
+
+        // Yes, this is a hack. Sometimes the ball increses the speed.
+        // With this hack I'm limiting to an a reasonable ammount.
+        if (_rigidbody.velocity.magnitude > _maxVelocityMagnitude)
+        {
+            _rigidbody.velocity = _rigidbody.velocity.normalized * _maxVelocityMagnitude;
         }
     }
 

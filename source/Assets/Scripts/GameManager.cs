@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         if (_level == 1)
         {
             // In first level, show controls.
-            ModalDialog.Instance.Show("< >\n[movement]\n\naction button\n[launch/perspektiva]", 4, () =>
+            ModalDialog.Instance.Show("< >\n[movement]\n\nprimary button\n[launch/perspektiva]\n\nsecondary button\n[random/time]", 4, () =>
             {
                 ModalDialog.Instance.Show("Level " + _level, levelStartDelay);
             });
