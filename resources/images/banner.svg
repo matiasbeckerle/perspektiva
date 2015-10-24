@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="432"
+   height="163"
+   id="svg3925"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="banner.svg">
+  <defs
+     id="defs3927" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="367.09067"
+     inkscape:cy="214.30162"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer4"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3930">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Background"
+     transform="translate(27.952759,-515.0329)">
+    <rect
+       style="fill:#1c0113;fill-opacity:1;stroke:none"
+       id="rect3961"
+       width="432"
+       height="163"
+       x="-27.952759"
+       y="515.0329" />
+  </g>
+  <g
+     inkscape:label="Logo"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(27.952759,-515.0329)">
+    <path
+       d="m 32.795373,599.3004 -21.647312,0 0,16.1361 -5.4122422,0 0,-37.65306 27.0595542,0 z m -5.41224,-5.37924 0,-10.75846 -16.235072,0 0,10.75846 z"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square"
+       id="path3777"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 67.629821,583.23966 -21.647257,0 0,10.7585 16.235034,0 0,5.37926 -16.235034,0 0,10.75682 21.647257,0 0,5.37925 -27.059527,0 0,-37.65305 27.059527,0 z"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square"
+       id="path3779"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 97.052069,594.07518 5.412231,0 0,21.51533 -5.412231,0 0,-17.05043 -16.235065,0 0,17.05043 -5.412268,0 0,-37.65306 21.647333,0 z m -5.41223,-0.91432 0,-9.84415 -10.822835,0 0,9.84415 z"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square"
+       id="path3781"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 110.23922,578.01449 27.05956,0 0,5.37922 -21.64729,0 0,10.75855 21.64729,0 0,21.51526 -27.05956,0 0,-5.37919 21.64732,0 0,-10.75686 -21.64732,0 z"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square"
+       id="path3783"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 172.13325,599.60856 -21.64732,0 0,16.13602 -5.41219,0 0,-37.65303 27.05951,0 z m -5.41223,-5.37928 0,-10.7585 -16.23509,0 0,10.7585 z"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square"
+       id="path3785"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 206.96774,583.54781 -21.64732,0 0,10.75847 16.23507,0 0,5.37923 -16.23507,0 0,10.75684 21.64732,0 0,5.37928 -27.05956,0 0,-37.65306 27.05956,0 z"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square"
+       id="path3787"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 214.74266,578.00341 5.41226,-3.90378 0,25.42078 5.41219,0 0,-10.75853 5.41061,0 0,10.75853 10.8245,0 0,16.13608 -5.41223,3.30972 0,-14.06823 -16.23507,0 0,10.75851 -5.41226,0 z"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square"
+       id="path3789"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccccccc" />
+    <path
+       d="m 249.57713,578.24558 27.05956,0 0,5.37926 -10.82445,0 0,32.27377 -5.41064,0 0,-32.27377 -10.82447,0 z"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square"
+       id="path3791"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 284.41161,578.32263 16.23511,0 0,5.37923 -5.41062,0 0,26.89459 5.41062,0 0,5.37922 -16.23511,0 0,-5.37922 5.41223,0 0,-26.89459 -5.41223,0 z"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square"
+       id="path3793"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 313.8768,599.91659 5.41224,0 0,10.75685 5.41058,0 0,-10.75685 5.4122,0 0,-21.51698 5.41227,0 0,21.51698 -5.41227,0 0,10.75685 -5.4122,0 0,5.37927 -5.41058,0 0,-5.37927 -5.41224,0 0,-10.75685 -5.41223,0 0,-21.51698 5.41223,0 z"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square"
+       id="path3795"
+       inkscape:connector-curvature="0" />
+    <path
+       d="m 343.29901,616.12972 0,-32.27382 5.41226,0 0,-5.37922 16.23504,0 0,5.37922 5.41227,0 0,32.27382 -5.41227,0 0,-16.13605 -16.23504,0 0.0545,16.13605 z m 5.46678,-32.21965 0,10.70435 16.12603,0 0,-10.70435 z"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square"
+       id="path3797"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
