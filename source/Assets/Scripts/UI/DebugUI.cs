@@ -36,6 +36,10 @@ public class DebugUI : MonoBehaviour
         {
             Show();
         }
+        else
+        {
+            Hide();
+        }
     }
 
     protected void Start()
