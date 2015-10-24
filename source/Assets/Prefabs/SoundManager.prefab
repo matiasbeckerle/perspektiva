@@ -42,7 +42,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .850000024
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -286,7 +286,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Volume
-      value: .75
+      value: .850000024
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: musicClips.Array.data[0]
