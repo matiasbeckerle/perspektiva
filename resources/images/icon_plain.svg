@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   width="200"
+   height="200"
+   id="svg3041"
+   style="enable-background:new">
+  <defs
+     id="defs3043" />
+  <metadata
+     id="metadata3046">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-64.246483,-448.11551)"
+     id="layer2"
+     style="display:inline">
+    <rect
+       width="200"
+       height="200"
+       x="64.246483"
+       y="448.11551"
+       id="rect3066"
+       style="fill:#1c0113;fill-opacity:1;stroke:none;display:inline" />
+  </g>
+  <g
+     transform="translate(-64.246483,-448.11551)"
+     id="layer3"
+     style="display:inline">
+    <path
+       d="m 111.16742,551.67781 -28.799612,0 0,21.59912 -7.2004,0 0,-50.40088 36.000012,0 z m -7.20044,-7.20044 0,-14.40088 -21.599172,0 0,14.40088 z"
+       id="path3777"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;display:inline;font-family:Pixel Square;-inkscape-font-specification:Pixel Square" />
+    <path
+       d="m 121.34971,523.77364 7.20044,-5.22547 0,34.02723 7.20044,0 0,-14.40088 7.19824,0 0,14.40088 14.40088,0 0,21.59912 -7.20044,4.43029 0,-18.83117 -21.59912,0 0,14.40088 -7.20044,0 z"
+       id="path3789"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;display:inline;font-family:Pixel Square;-inkscape-font-specification:Pixel Square" />
+    <path
+       d="m 174.73244,552.67782 7.20044,0 0,14.39868 7.19824,0 0,-14.39868 7.20044,0 0,-28.80176 7.20044,0 0,28.80176 -7.20044,0 0,14.39868 -7.20044,0 0,7.20044 -7.19824,0 0,-7.20044 -7.20044,0 0,-14.39868 -7.20044,0 0,-28.80176 7.20044,0 z"
+       id="path3795"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;display:inline;font-family:Pixel Square;-inkscape-font-specification:Pixel Square" />
+    <path
+       d="m 213.71429,574.77695 0,-43.20044 7.20044,0 0,-7.20044 21.59912,0 0,7.20044 7.20044,0 0,43.20044 -7.20044,0 0,-21.59912 -21.59912,0 0.0725,21.59912 z m 7.27295,-43.12793 0,14.32837 21.4541,0 0,-14.32837 z"
+       id="path3797"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:-4px;word-spacing:0px;fill:#ff8c3c;fill-opacity:1;stroke:none;font-family:Pixel Square;-inkscape-font-specification:Pixel Square" />
+  </g>
+</svg>
