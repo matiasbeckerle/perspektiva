@@ -41,6 +41,11 @@ public class MainMenu : MonoBehaviour
     public GameObject panelAbout;
 
     /// <summary>
+    /// The game version text reference.
+    /// </summary>
+    public Text gameVersionText;
+
+    /// <summary>
     /// Panel being used.
     /// </summary>
     private MenuPanel _currentPanel;
@@ -71,6 +76,9 @@ public class MainMenu : MonoBehaviour
 
     protected void Start()
     {
+        var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+        gameVersionText.text = string.Format("{0}.{1}.{2}", version.Major, version.Minor, version.Build);
+
         if (GameManager.Instance.IsGameStarted())
         {
             Hide();
