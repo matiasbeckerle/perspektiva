@@ -44,7 +44,7 @@ public class DebugUI : MonoBehaviour
 
     protected void Start()
     {
-        versionText.text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + " [beta]";
+        versionText.text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
     }
 
     /// <summary>
