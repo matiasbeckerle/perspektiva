@@ -11,7 +11,7 @@ GameObject:
   - 222: {fileID: 22293370}
   - 114: {fileID: 11480358}
   m_Layer: 5
-  m_Name: Lifes
+  m_Name: Lives
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ GameObject:
   - 222: {fileID: 22298464}
   - 114: {fileID: 11484896}
   m_Layer: 5
-  m_Name: LifesQuantity
+  m_Name: LivesQuantity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lifes
+  m_Text: Lives
 --- !u!114 &11482468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevelText: {fileID: 11420722}
-  lifesQuantityText: {fileID: 11484896}
+  livesQuantityText: {fileID: 11484896}
 --- !u!222 &22215938
 CanvasRenderer:
   m_ObjectHideFlags: 1

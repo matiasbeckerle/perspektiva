@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Handles the game. Little task, right?
-/// </summary>
 public class GameManager : MonoBehaviour
 {
     /// <summary>
@@ -27,9 +24,9 @@ public class GameManager : MonoBehaviour
     public float playerSetupDelay = 1f;
 
     /// <summary>
-    /// Lifes to be used when the game starts.
+    /// Lives to be used when the game starts.
     /// </summary>
-    public int initialLifes = 3;
+    public int initialLives = 2;
 
     /// <summary>
     /// Clip to play when the player loses a life.
@@ -47,9 +44,9 @@ public class GameManager : MonoBehaviour
     private bool _playing = false;
 
     /// <summary>
-    /// Current player's lifes.
+    /// Current player's lives.
     /// </summary>
-    private int _lifes = 0;
+    private int _lives = 0;
 
     /// <summary>
     /// Current level.
@@ -132,7 +129,7 @@ public class GameManager : MonoBehaviour
         }
 
         InGameUI.Instance.UpdateCurrentLevel(_level);
-        InGameUI.Instance.UpdateLifesQuantity(_lifes);
+        InGameUI.Instance.UpdateLivesQuantity(_lives);
         InGameUI.Instance.Show();
 
         // Keep quantity of bricks in the current level.
@@ -171,18 +168,18 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         _level = 0;
-        _lifes = initialLifes;
+        _lives = initialLives;
         _gameStarted = true;
         SoundManager.Instance.RestartMusic();
     }
 
     /// <summary>
-    /// General check: lifes, game over, bricks.
+    /// General check: lives, game over, bricks.
     /// </summary>
     private void CheckStatus()
     {
-        // Player is still alive?
-        if (_lifes == 0)
+        // Player has another life?
+        if (_lives == -1)
         {
             GameOver();
         }
@@ -204,7 +201,7 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Player loses the game. No more lifes!
+    /// Player loses the game. No more lives!
     /// </summary>
     private void GameOver()
     {
@@ -242,11 +239,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void LoseLife()
     {
-        _lifes--;
+        _lives--;
 
         SoundManager.Instance.PlaySingle(loseLifeSound);
 
-        InGameUI.Instance.UpdateLifesQuantity(_lifes);
+        InGameUI.Instance.UpdateLivesQuantity(_lives);
 
         Destroy(_playerClone);
 

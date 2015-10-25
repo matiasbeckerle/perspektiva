@@ -42,7 +42,7 @@ MonoBehaviour:
   player: {fileID: 163650, guid: 8ff25fce80d7ee9488d58b8375834879, type: 2}
   levelStartDelay: 2
   playerSetupDelay: 1
-  initialLifes: 3
+  initialLives: 2
   loseLifeSound: {fileID: 8300000, guid: 508338671dd4b1444aff4a4ae11e96c2, type: 3}
 --- !u!1001 &100100000
 Prefab:
@@ -62,6 +62,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: initialLifes
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: initialLives
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
