@@ -15,9 +15,9 @@ public class InGameUI : MonoBehaviour
     public Text currentLevelText;
 
     /// <summary>
-    /// Quantity of lifes text reference.
+    /// Quantity of lives text reference.
     /// </summary>
-    public Text lifesQuantityText;
+    public Text livesQuantityText;
 
     protected void Awake()
     {
@@ -51,12 +51,12 @@ public class InGameUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the lifes quantity on the UI.
+    /// Updates the lives quantity on the UI.
     /// </summary>
-    /// <param name="lifesQuantity">The quantity of lifes left.</param>
-    public void UpdateLifesQuantity(int lifesQuantity)
+    /// <param name="livesQuantity">The quantity of lives left.</param>
+    public void UpdateLivesQuantity(int livesQuantity)
     {
-        lifesQuantityText.text = lifesQuantity.ToString();
+        livesQuantityText.text = livesQuantity.ToString();
     }
 
     /// <summary>
