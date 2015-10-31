@@ -49,9 +49,14 @@ public class Ball : MonoBehaviour
     private float _initialVelocityPerLevel;
 
     /// <summary>
-    /// Used for a hack in order to limit the ball speed.
+    /// Used in order to limit the ball speed (maximum).
     /// </summary>
     private float _maxVelocityMagnitude = 20;
+
+    /// <summary>
+    /// Used in order to limit the ball speed (minimum).
+    /// </summary>
+    private float _minVelocityMagnitude = 16;
 
     /// <summary>
     /// CameraShake effect script reference.
@@ -129,11 +134,22 @@ public class Ball : MonoBehaviour
             _mainCamera.enabled = true;
         }
 
-        // Yes, this is a hack. Sometimes the ball increses the speed.
-        // With this hack I'm limiting to an a reasonable ammount.
+        HandleSpeedBoundaries();
+    }
+
+    /// <summary>
+    /// Yes, this is a hack. Sometimes the ball increses the speed.
+    /// With this hack I'm limiting to an a reasonable ammount.
+    /// </summary>
+    private void HandleSpeedBoundaries()
+    {
         if (_rigidbody.velocity.magnitude > _maxVelocityMagnitude)
         {
             _rigidbody.velocity = _rigidbody.velocity.normalized * _maxVelocityMagnitude;
+        }
+        else if (_rigidbody.velocity.magnitude < _minVelocityMagnitude)
+        {
+            _rigidbody.velocity = _rigidbody.velocity.normalized * _minVelocityMagnitude;
         }
     }
 
