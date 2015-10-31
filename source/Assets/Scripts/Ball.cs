@@ -95,46 +95,81 @@ public class Ball : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        Time.timeScale = 1;
-
-        if (Input.GetAxisRaw("Fire1") != 0)
+        // MAIN button
+        //
+        // On enabled
+        // AND when the ball isn't moving yet
+        // ---> Launch the ball.
+        if (Input.GetAxisRaw("Fire1") != 0 && Input.GetAxisRaw("Fire2") == 0 && !GameManager.Instance.IsPlaying())
         {
-            if (!GameManager.Instance.IsPlaying())
-            {
-                _cameraSwitchEnabled = false;
-                Invoke("EnableCameraSwitch", 1);
-
-                GameManager.Instance.SetPlaying(true);
-                transform.parent = null;
-                _rigidbody.isKinematic = false;
-
-                // Add some natural force.
-                _rigidbody.AddForce(new Vector3(_initialVelocityPerLevel, _initialVelocityPerLevel, 0));
-
-                // Add some rotation.
-                _rigidbody.AddTorque(new Vector3(7, 7, 7));
-            }
-            else if (_cameraSwitchEnabled)
-            {
-                _mainCamera.enabled = false;
-                _ballCamera.enabled = true;
-            }
+            LaunchBall();
         }
-        else if (Input.GetAxisRaw("Fire2") != 0)
+        // On enabled
+        // AND the camera switching is enabled too
+        // AND the ball is already moving on
+        // ---> Activate the ball camera.
+        else if (Input.GetAxisRaw("Fire1") != 0 && _cameraSwitchEnabled && GameManager.Instance.IsPlaying())
         {
-            _rigidbody.AddForce(new Vector3(
-                _initialVelocityPerLevel * _negativeOrPositiveAxeOptions[Random.Range(0, _negativeOrPositiveAxeOptions.Length)],
-                _initialVelocityPerLevel * _negativeOrPositiveAxeOptions[Random.Range(0, _negativeOrPositiveAxeOptions.Length)],
-                0));
-            Time.timeScale = 0.2f;
+            EnableBallCamera();
         }
+        // On disabled
+        // ---> deactivate the ball camera
         else
         {
-            _ballCamera.enabled = false;
-            _mainCamera.enabled = true;
+            DisableBallCamera();
+        }
+
+        // SECONDARY button
+        // On enabled
+        // AND the camera switching is enabled too
+        // AND the ball is already movin on
+        // ---> The time slows down and a random force is applied to the ball.
+        if (Input.GetAxisRaw("Fire2") != 0 && _cameraSwitchEnabled  && GameManager.Instance.IsPlaying())
+        {
+            RandomizeAndSlowBall();
+        }
+        // On disabled
+        // ---> Time is normal.
+        else
+        {
+            Time.timeScale = 1;
         }
 
         HandleSpeedBoundaries();
+    }
+
+    /// <summary>
+    /// Detaches the ball from paddle and applies a force to launch the ball.
+    /// </summary>
+    private void LaunchBall()
+    {
+        GameManager.Instance.SetPlaying(true);
+
+        // Enable camera switching after first second of playing.
+        _cameraSwitchEnabled = false;
+        Invoke("EnableCameraSwitch", 1);
+
+        // Detach from paddle.
+        transform.parent = null;
+        _rigidbody.isKinematic = false;
+
+        // Add some natural force.
+        _rigidbody.AddForce(new Vector3(_initialVelocityPerLevel, _initialVelocityPerLevel, 0));
+
+        // Add some rotation.
+        _rigidbody.AddTorque(new Vector3(7, 7, 0));
+    }
+
+    /// <summary>
+    /// Adds a random force to the ball and slows down the timeScale.
+    /// </summary>
+    private void RandomizeAndSlowBall()
+    {
+        _rigidbody.AddForce(new Vector3(
+                _initialVelocityPerLevel * _negativeOrPositiveAxeOptions[Random.Range(0, _negativeOrPositiveAxeOptions.Length)],
+                _initialVelocityPerLevel * _negativeOrPositiveAxeOptions[Random.Range(0, _negativeOrPositiveAxeOptions.Length)],
+                0));
+        Time.timeScale = 0.2f;
     }
 
     /// <summary>
@@ -168,6 +203,24 @@ public class Ball : MonoBehaviour
     private void EnableCameraSwitch()
     {
         _cameraSwitchEnabled = true;
+    }
+
+    /// <summary>
+    /// Activates the ball camera and disables main.
+    /// </summary>
+    private void EnableBallCamera()
+    {
+        _mainCamera.enabled = false;
+        _ballCamera.enabled = true;
+    }
+
+    /// <summary>
+    /// Deactivates the ball camera and activates main.
+    /// </summary>
+    private void DisableBallCamera()
+    {
+        _ballCamera.enabled = false;
+        _mainCamera.enabled = true;
     }
 
     protected void OnCollisionEnter(Collision collision)
