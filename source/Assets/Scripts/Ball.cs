@@ -51,7 +51,7 @@ public class Ball : MonoBehaviour
     /// <summary>
     /// Used in order to limit the ball speed (maximum).
     /// </summary>
-    private float _maxVelocityMagnitude = 20;
+    private float _maxVelocityMagnitude = 19;
 
     /// <summary>
     /// Used in order to limit the ball speed (minimum).
