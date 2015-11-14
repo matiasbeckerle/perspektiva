@@ -143,7 +143,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void SetupPlayer()
     {
-        _playerClone = Instantiate(player, player.transform.position, Quaternion.identity) as GameObject;
+        // Sometimes, a new game could collide with a loss life respawn because the last one
+        // is executed with an invoke. Ensuring the game object already exists we are avoiding
+        // an issue with multiple paddles and balls.
+        if (!GameObject.FindGameObjectWithTag("Player"))
+        {
+            _playerClone = Instantiate(player, player.transform.position, Quaternion.identity) as GameObject;
+        }
     }
 
     /// <summary>
