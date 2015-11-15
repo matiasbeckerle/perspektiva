@@ -54,6 +54,11 @@ public class GameManager : MonoBehaviour
     private int _level = 0;
 
     /// <summary>
+    /// User's score.
+    /// </summary>
+    private int _score = 0;
+
+    /// <summary>
     /// Last level for play.
     /// </summary>
     private int _lastLevel = 9;
@@ -72,6 +77,11 @@ public class GameManager : MonoBehaviour
     /// Specifies if the ball camera is ready to be used or not.
     /// </summary>
     private bool _ballCameraReady = false;
+
+    /// <summary>
+    /// Flag to know if the ball camera is currently active (enabled).
+    /// </summary>
+    private bool _ballCameraEnabled = false;
 
     protected void Awake()
     {
@@ -133,6 +143,7 @@ public class GameManager : MonoBehaviour
             ModalDialog.Instance.Show("Level " + _level, levelStartDelay);
         }
 
+        InGameUI.Instance.UpdateScoreQuantity(_score);
         InGameUI.Instance.UpdateCurrentLevel(_level);
         InGameUI.Instance.UpdateLivesQuantity(_lives);
         InGameUI.Instance.Show();
@@ -178,6 +189,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ResetGame()
     {
+        _score = 0;
         _level = 0;
         _lives = initialLives;
         _gameStarted = true;
@@ -233,7 +245,7 @@ public class GameManager : MonoBehaviour
 
         PauseGame();
 
-        ModalDialog.Instance.Show("You WIN! You ROCK!");
+        ModalDialog.Instance.Show("You WIN!\n\nYou ROCK with a score of " + _score.ToString() + "!");
     }
 
     /// <summary>
@@ -269,6 +281,7 @@ public class GameManager : MonoBehaviour
     public void DestroyBrick()
     {
         _bricks--;
+        UpdateScore();
         CheckStatus();
     }
 
@@ -312,5 +325,23 @@ public class GameManager : MonoBehaviour
     public bool IsBallCameraReady()
     {
         return _ballCameraReady;
+    }
+
+    /// <summary>
+    /// Sets the status to enabled or disabled.
+    /// </summary>
+    /// <param name="status">The current status.</param>
+    public void SetBallCameraStatus(bool status)
+    {
+        _ballCameraEnabled = status;
+    }
+
+    /// <summary>
+    /// Adds new score based on ball camera current status.
+    /// </summary>
+    private void UpdateScore()
+    {
+        _score += _ballCameraEnabled ? 20 : 5;
+        InGameUI.Instance.UpdateScoreQuantity(_score);
     }
 }

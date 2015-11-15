@@ -35,8 +35,11 @@ public class CameraToggle : MonoBehaviour
     private void EnableBallCamera()
     {
         CheckBallCamera();
+
         _mainCamera.enabled = false;
         _ballCamera.enabled = true;
+
+        GameManager.Instance.SetBallCameraStatus(true);
     }
 
     /// <summary>
@@ -49,6 +52,8 @@ public class CameraToggle : MonoBehaviour
         {
             _ballCamera.enabled = false;
         }
+
+        GameManager.Instance.SetBallCameraStatus(false);
     }
 
     /// <summary>

@@ -10,6 +10,11 @@ public class InGameUI : MonoBehaviour
     public static InGameUI Instance = null;
 
     /// <summary>
+    /// Score quantity text reference.
+    /// </summary>
+    public Text scoreQuantity;
+
+    /// <summary>
     /// Current level text reference.
     /// </summary>
     public Text currentLevelText;
@@ -48,6 +53,15 @@ public class InGameUI : MonoBehaviour
     public void Hide()
     {
         gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Updates the score quantity on the UI.
+    /// </summary>
+    /// <param name="scoreQuantity">The user score.</param>
+    public void UpdateScoreQuantity(int scoreQuantity)
+    {
+        this.scoreQuantity.text = scoreQuantity.ToString();
     }
 
     /// <summary>
