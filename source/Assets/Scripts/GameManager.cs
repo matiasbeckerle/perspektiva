@@ -68,6 +68,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private GameObject _playerClone;
 
+    /// <summary>
+    /// Specifies if the ball camera is ready to be used or not.
+    /// </summary>
+    private bool _ballCameraReady = false;
+
     protected void Awake()
     {
         if (Instance == null)
@@ -292,5 +297,20 @@ public class GameManager : MonoBehaviour
     public void SetPlaying(bool value)
     {
         _playing = value;
+    }
+
+    public void EnableBallCamera()
+    {
+        _ballCameraReady = true;
+    }
+
+    public void DisableBallCamera()
+    {
+        _ballCameraReady = false;
+    }
+
+    public bool IsBallCameraReady()
+    {
+        return _ballCameraReady;
     }
 }
