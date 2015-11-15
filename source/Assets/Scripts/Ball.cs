@@ -64,21 +64,6 @@ public class Ball : MonoBehaviour
     private CameraShake _shaker;
 
     /// <summary>
-    /// Main camera's reference.
-    /// </summary>
-    private Camera _mainCamera;
-
-    /// <summary>
-    /// Ball camera's reference.
-    /// </summary>
-    private Camera _ballCamera;
-
-    /// <summary>
-    /// Flag to know when the camera switching could be possible.
-    /// </summary>
-    private bool _cameraSwitchEnabled = false;
-
-    /// <summary>
     /// Used to generate a random movement using secondary button.
     /// </summary>
     private int[] _negativeOrPositiveAxeOptions = new int[] { -1, 1 };
@@ -89,46 +74,26 @@ public class Ball : MonoBehaviour
         _shaker = GetComponent<CameraShake>();
 
         _initialVelocityPerLevel = initialVelocity + (50 * GameManager.Instance.GetCurrentLevel());
-
-        SetupCameras();
     }
 
     protected void FixedUpdate()
     {
-        // MAIN button
-        //
-        // On enabled
+        // On MAIN button enabled
         // AND when the ball isn't moving yet
         // ---> Launch the ball.
         if (Input.GetAxisRaw("Fire1") != 0 && Input.GetAxisRaw("Fire2") == 0 && !GameManager.Instance.IsPlaying())
         {
             LaunchBall();
         }
-        // On enabled
-        // AND the camera switching is enabled too
-        // AND the ball is already moving on
-        // ---> Activate the ball camera.
-        else if (Input.GetAxisRaw("Fire1") != 0 && _cameraSwitchEnabled && GameManager.Instance.IsPlaying())
-        {
-            EnableBallCamera();
-        }
-        // On disabled
-        // ---> deactivate the ball camera
-        else
-        {
-            DisableBallCamera();
-        }
 
-        // SECONDARY button
-        // On enabled
-        // AND the camera switching is enabled too
+        // On SECONDARY button enabled
         // AND the ball is already movin on
         // ---> The time slows down and a random force is applied to the ball.
-        if (Input.GetAxisRaw("Fire2") != 0 && _cameraSwitchEnabled  && GameManager.Instance.IsPlaying())
+        if (Input.GetAxisRaw("Fire2") != 0 && GameManager.Instance.IsPlaying())
         {
             RandomizeAndSlowBall();
         }
-        // On disabled
+        // On SECONDARY button disabled
         // ---> Time is normal.
         else
         {
@@ -145,9 +110,9 @@ public class Ball : MonoBehaviour
     {
         GameManager.Instance.SetPlaying(true);
 
-        // Enable camera switching after first second of playing.
-        _cameraSwitchEnabled = false;
-        Invoke("EnableCameraSwitch", 1);
+        // Enable ball camera after first second of playing.
+        GameManager.Instance.DisableBallCamera();
+        Invoke("EnableBallCamera", 1);
 
         // Detach from paddle.
         transform.parent = null;
@@ -188,39 +153,9 @@ public class Ball : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Saves a reference for each camera.
-    /// </summary>
-    private void SetupCameras()
-    {
-        _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        _ballCamera = transform.Find("BallCamera").GetComponent<Camera>();
-    }
-
-    /// <summary>
-    /// Enables camera switching.
-    /// </summary>
-    private void EnableCameraSwitch()
-    {
-        _cameraSwitchEnabled = true;
-    }
-
-    /// <summary>
-    /// Activates the ball camera and disables main.
-    /// </summary>
     private void EnableBallCamera()
     {
-        _mainCamera.enabled = false;
-        _ballCamera.enabled = true;
-    }
-
-    /// <summary>
-    /// Deactivates the ball camera and activates main.
-    /// </summary>
-    private void DisableBallCamera()
-    {
-        _ballCamera.enabled = false;
-        _mainCamera.enabled = true;
+        GameManager.Instance.EnableBallCamera();
     }
 
     protected void OnCollisionEnter(Collision collision)
@@ -243,9 +178,6 @@ public class Ball : MonoBehaviour
 
     protected void OnDestroy()
     {
-        if (_mainCamera != null)
-        {
-            _mainCamera.enabled = true;
-        }
+        GameManager.Instance.DisableBallCamera();
     }
 }

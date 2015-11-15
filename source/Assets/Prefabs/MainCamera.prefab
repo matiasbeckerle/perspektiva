@@ -13,6 +13,7 @@ GameObject:
   - 124: {fileID: 12492996}
   - 81: {fileID: 8148364}
   - 114: {fileID: 11436478}
+  - 114: {fileID: 11487610}
   - 114: {fileID: 11485934}
   - 114: {fileID: 11496802}
   - 114: {fileID: 11410728}
@@ -140,6 +141,17 @@ MonoBehaviour:
   blurIterations: 2
   blurType: 0
   fastBloomShader: {fileID: 4800000, guid: 68a00c837b82e4c6d92e7da765dc5f1d, type: 3}
+--- !u!114 &11487610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a614644e8bbe248a91499a1bce2768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11496802
 MonoBehaviour:
   m_ObjectHideFlags: 1
