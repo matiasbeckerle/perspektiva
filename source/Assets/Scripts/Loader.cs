@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Reflection;
 
-[assembly: AssemblyVersion("1.1.1.*")]
+[assembly: AssemblyVersion("1.2.0.*")]
 public class Loader : MonoBehaviour
 {
     /// <summary>
