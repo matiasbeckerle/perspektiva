@@ -11,7 +11,7 @@ public class CameraToggle : MonoBehaviour
         _mainCamera = GetComponent<Camera>();
     }
 
-    protected void FixedUpdate()
+    protected void Update()
     {
         // On MAIN button enabled
         // AND the ball camera is ready too
@@ -22,9 +22,8 @@ public class CameraToggle : MonoBehaviour
             EnableBallCamera();
         }
         // On MAIN button disabled
-        // AND the ball is already moving on
         // ---> deactivate the ball camera.
-        else if (GameManager.Instance.IsPlaying())
+        else
         {
             DisableBallCamera();
         }
@@ -45,9 +44,11 @@ public class CameraToggle : MonoBehaviour
     /// </summary>
     private void DisableBallCamera()
     {
-        CheckBallCamera();
-        _ballCamera.enabled = false;
         _mainCamera.enabled = true;
+        if (_ballCamera != null)
+        {
+            _ballCamera.enabled = false;
+        }
     }
 
     /// <summary>

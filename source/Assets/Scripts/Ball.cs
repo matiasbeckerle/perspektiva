@@ -175,9 +175,4 @@ public class Ball : MonoBehaviour
             SoundManager.Instance.RandomizeSfx(wallHitSound1, wallHitSound2);
         }
     }
-
-    protected void OnDestroy()
-    {
-        GameManager.Instance.DisableBallCamera();
-    }
 }
