@@ -232,12 +232,16 @@ public class GameManager : MonoBehaviour
     {
         _gameStarted = false;
 
-        SaveScore();
+        //SaveScore();
 
-        ModalDialog.Instance.Show("Game Over", 2, () =>
+        ModalDialog.Instance.SaveScore("Game Over", () =>
         {
             MainMenu.Instance.Show();
         });
+        /*ModalDialog.Instance.Show("Game Over", 2, () =>
+        {
+            MainMenu.Instance.Show();
+        });*/
     }
 
     /// <summary>

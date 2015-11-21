@@ -15,6 +15,8 @@ public class ModalDialog : MonoBehaviour
     /// </summary>
     public Text messageText;
 
+    public InputField playername;
+
     protected void Awake()
     {
         if (Instance == null)
@@ -32,7 +34,7 @@ public class ModalDialog : MonoBehaviour
 
     protected void Update()
     {
-        if (Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel") || Input.GetButtonDown("Fire1"))
+        if (/*Input.GetButtonDown("Submit") || */Input.GetButtonDown("Cancel")/* || Input.GetButtonDown("Fire1")*/)
         {
             Hide();
 
@@ -66,11 +68,25 @@ public class ModalDialog : MonoBehaviour
     }
 
     /// <summary>
+    /// Shows a message to get playername before saving score.
+    /// </summary>
+    /// <param name="message">The content to be shown.</param>
+    /// <param name="secondsBeforeHiding">Seconds to wait before hiding the message.</param>
+    /// <param name="callback">Action to be executed after finishing.</param>
+    public void SaveScore(string message, Action callback = null)
+    {
+        Show(message);
+        playername.gameObject.SetActive(true);
+        //EventSystem.current.SetSelectedGameObject(input.gameObject, null);
+    }
+
+    /// <summary>
     /// Hides the ModalDialog from the scene.
     /// </summary>
     public void Hide()
     {
         gameObject.SetActive(false);
+        playername.gameObject.SetActive(false);
     }
 
     /// <summary>
