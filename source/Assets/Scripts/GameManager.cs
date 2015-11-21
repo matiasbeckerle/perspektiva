@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -230,6 +232,8 @@ public class GameManager : MonoBehaviour
     {
         _gameStarted = false;
 
+        SaveScore();
+
         ModalDialog.Instance.Show("Game Over", 2, () =>
         {
             MainMenu.Instance.Show();
@@ -242,8 +246,9 @@ public class GameManager : MonoBehaviour
     private void Win()
     {
         _gameStarted = false;
-
         PauseGame();
+
+        SaveScore();
 
         ModalDialog.Instance.Show("You WIN!\n\nYou ROCK with a score of " + _score.ToString() + "!");
     }
@@ -343,5 +348,55 @@ public class GameManager : MonoBehaviour
     {
         _score += _ballCameraEnabled ? 20 : 5;
         InGameUI.Instance.UpdateScoreQuantity(_score);
+    }
+
+    /// <summary>
+    /// Score functionality could be managed in a separated class.
+    /// </summary>
+    private void SaveScore(string player = "")
+    {
+        // Get and parse leaderboard.
+        var leaderboardJson = PlayerPrefs.GetString("Leaderboard");
+        var leaderboard = JsonConvert.DeserializeObject<List<Score>>(leaderboardJson);
+        if (leaderboard == null)
+        {
+            leaderboard = new List<Score>();
+        }
+
+        // Add the new score.
+        leaderboard.Add(new Score(_score, _level, player));
+
+        // Sort descending by score.
+        leaderboard.Sort(delegate (Score score1, Score score2)
+        {
+            return score2.score.CompareTo(score1.score);
+        });
+
+        // Remove lowest score.
+        if(leaderboard.Count > 3)
+        {
+            leaderboard.RemoveAt(leaderboard.Count - 1);
+        }
+
+        // Save list into PlayerPrefs.
+        PlayerPrefs.SetString("Leaderboard", JsonConvert.SerializeObject(leaderboard));
+        PlayerPrefs.Save();
+    }
+}
+
+/// <summary>
+/// Represents a single unit of a leaderboard position.
+/// </summary>
+public class Score
+{
+    public int score;
+    public int level;
+    public string player;
+
+    public Score(int score, int level, string player)
+    {
+        this.score = score;
+        this.level = level;
+        this.player = player;
     }
 }
